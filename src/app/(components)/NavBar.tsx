@@ -329,6 +329,23 @@ const NavBar = () => {
               Contact
             </Link>
           </li>
+          <li>
+            <Link
+              href="/digitalgarden"
+              prefetch
+              className={` p-1.5  hover:text-gray-600 border-[#3b3b3b] ${pathname === "/contactus"
+                ? "border-[2px]"
+                : "border-[0px]"
+                } transition-opacity duration-300 ease-in-out`}
+              scroll={false}
+              onClick={(e) => {
+                //setImageSlide(false);
+                //setActive("contact");
+              }}
+            >
+              Digital Garden
+            </Link>
+          </li>
         </ul>
       </nav>
     </header>
