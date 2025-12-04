@@ -18,13 +18,14 @@ const PDF: React.FC<PdfViewerPageProps> = ({ params }) => {
 
   const [loading, setLoading] = useState(true);
   const [zoom, setZoom] = useState(1);
- 
+
 
   const formattedName = name
+    .replace(/_[a-zA-Z0-9]+\.pdf$/i, ".pdf")
     .replace(/_/g, " ")
     .replace(/bsnyxt/gi, "")
     .replace(/Bala Sida Cordifolia/i, "Bala (Sida Cordifolia)")
-    .trim();
+    .trim(); 
 
   const zoomIn = () => setZoom((prev) => Math.min(prev + 0.15, 2));
   const zoomOut = () => setZoom((prev) => Math.max(prev - 0.15, 0.55));
@@ -76,7 +77,7 @@ const PDF: React.FC<PdfViewerPageProps> = ({ params }) => {
           <iframe
             id="pdf-iframe"
             src={`${pdfUrl}#toolbar=1&zoom=page-width`}
-            title={name}
+            title={formattedName}
             loading="lazy"
             style={{
               width: `${100 / zoom}%`,
