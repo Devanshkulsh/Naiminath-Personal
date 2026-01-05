@@ -40,12 +40,8 @@ bg-no-repeat  flex md:flex-row flex-col justify-center gap-6 mt-10 lg:px-20 sm:p
           <div className="text-[#000000]">
             {/*   <div className="w-[95%] md:w-[85%] h-full mt-3 md:mx-[10%] mx-[5%] py-[2%]">*/}
             <p className="mt-3 ml-2 mr-2">
-              Naiminath Ayurveda holds a commitment to providing quality
-              education and top-notch facilities in the field of ayurveda
-              medicine. We are a 100 bedded state of art Ayurvedic Hospital
-              which is functional since 2016, where more than 200 patients visit
-              the Outpatient Department every day and around 40 patients are
-              present in the Inpatient Department.
+              Naiminath Ayurveda is an institution dedicated to quality education and healthcare in the field of Ayurveda. Established in 2016, the college and hospital are managed by Shri Bhagwan Mahavir Jain Minority Educational Society.
+              The institute houses a 100-bedded Ayurvedic hospital with a well-functioning OPD serving over 200 patients daily and an IPD facility for around 40 patients. With a blend of traditional Ayurvedic knowledge and modern medical practices, Naiminath Ayurveda focuses on practical training, experiential learning, and patient-centric care.
             </p>
             <p className="mt-3 ml-2 mr-2">
               The college offers a comprehensive curriculum that not only covers
