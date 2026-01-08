@@ -63,7 +63,7 @@ const MobileNavBar = ({
         { label: "Principals Profile", path: "/college/principle-profile" },
       ],
     },
-    { label: "Ncism", path: "/ncism" },
+    { label: "Ncism", path: "/newNCISM" },
     { label: "Blog", path: "/blog" },
     { label: "Facilities", path: "/facilities" },
     { label: "Contact", path: "/contactus" },
