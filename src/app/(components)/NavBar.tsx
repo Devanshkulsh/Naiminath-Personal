@@ -267,7 +267,7 @@ const NavBar = () => {
           </li>
           <li>
             <Link
-              href="/newNCISM"
+              href="/ncism"
               prefetch
               className={` p-1.5  hover:text-gray-600 border-[#3b3b3b] ${pathname === "/ncism" ? "border-[2px]" : "border-[0px]"
                 } transition-opacity duration-300 ease-in-out`}
