@@ -105,8 +105,8 @@ const ImageSlider = () => {
                 <button 
                   className="bg-red-600 hover:bg-black text-white px-10 py-4 font-bold transition-all duration-300 transform hover:scale-105 shadow-lg hover:shadow-xl"
                   style={{ backgroundColor: '#de0000' }}
-                  onMouseEnter={(e) => e.target.style.backgroundColor = '#0d1317'}
-                  onMouseLeave={(e) => e.target.style.backgroundColor = '#de0000'}
+                  onMouseEnter={(e) => (e.target as HTMLButtonElement).style.backgroundColor = '#0d1317'}
+                  onMouseLeave={(e) => (e.target as HTMLButtonElement).style.backgroundColor = '#de0000'}
                 >
                   {slide.cta}
                 </button>
