@@ -240,4 +240,59 @@ export const plants: PlantItem[] = [
     image: "https://res.cloudinary.com/dhlqc0ymy/image/upload/v1763191567/Tulsi_mart5p.jpg",
     pdf: "https://res.cloudinary.com/dhlqc0ymy/image/upload/v1762755923/Tulsi_Ocimum_Sanctum_kriqdo.pdf",
   },
+  {
+    title: "Kutaj (Holarrhena antidysenterica)",
+    image: "https://res.cloudinary.com/dhlqc0ymy/image/upload/v1768990566/Kutaj_wutfc1.png",
+    pdf: "https://res.cloudinary.com/dhlqc0ymy/image/upload/v1768890040/Kutaj_wnwnv0.pdf",
+  },
+  {
+    title: "Patha (Cissampelos pareira)",
+    image: "https://res.cloudinary.com/dhlqc0ymy/image/upload/v1768990569/Patha_pjc8gz.png",
+    pdf: "https://res.cloudinary.com/dhlqc0ymy/image/upload/v1768890036/Patha_iv9zeg.pdf",
+  },
+  {
+    title: "Nagkesar (Mesua ferrea)",
+    image: "https://res.cloudinary.com/dhlqc0ymy/image/upload/v1768990567/Nagkesar_i4s4kg.png",
+    pdf: "https://res.cloudinary.com/dhlqc0ymy/image/upload/v1768890035/Nagkesar_hrz7ev.pdf",
+  },
+  {
+    title: "Pashanabheda (Bergenia ligulata)",
+    image: "https://res.cloudinary.com/dhlqc0ymy/image/upload/v1768990567/Pashanabheda_p7pdxi.png",
+    pdf: "https://res.cloudinary.com/dhlqc0ymy/image/upload/v1768890035/Pashanabheda_wx0vik.pdf",
+  },
+  {
+    title: "Methi (Trigonella foenum-graecum)",
+    image: "https://res.cloudinary.com/dhlqc0ymy/image/upload/v1768990567/Methi_tmodwv.png",
+    pdf: "https://res.cloudinary.com/dhlqc0ymy/image/upload/v1768890035/Methi_p3ybsy.pdf",
+  },
+  {
+    title: "Lodhra (Symplocos racemosa)",
+    image: "https://res.cloudinary.com/dhlqc0ymy/image/upload/v1768990565/Lodhra_haoz7e.png",
+    pdf: "https://res.cloudinary.com/dhlqc0ymy/image/upload/v1768890035/Lodhra_an9uz5.pdf",
+  },
+  {
+    title: "Lajjalu (Mimosa pudica)",
+    image: "https://res.cloudinary.com/dhlqc0ymy/image/upload/v1768990571/Lajjalu_x0igci.png",
+    pdf: "https://res.cloudinary.com/dhlqc0ymy/image/upload/v1768890034/Lajjalu_ulrtyb.pdf",
+  },
+  {
+    title: "Kumkum (Crocus sativus)",
+    image: "https://res.cloudinary.com/dhlqc0ymy/image/upload/v1768990566/Kumkum_suihsz.png",
+    pdf: "https://res.cloudinary.com/dhlqc0ymy/image/upload/v1768890034/Kumkum_paob5c.pdf",
+  },
+  {
+    title: "Kutki (Pichrohiza Kurroa)",
+    image: "https://res.cloudinary.com/dhlqc0ymy/image/upload/v1768990566/Kutki_wosqoa.png",
+    pdf: "https://res.cloudinary.com/dhlqc0ymy/image/upload/v1768890034/Kutki_rjfjvh.pdf",
+  },
+  {
+    title: "Meshashrungi (Gymnema sylvestre)",
+    image: "https://res.cloudinary.com/dhlqc0ymy/image/upload/v1768990567/Meshashrungi_jm7lhr.png",
+    pdf: "https://res.cloudinary.com/dhlqc0ymy/image/upload/v1768890034/Meshashrungi_onljkx.pdf",
+  },
+  {
+    title: "Kulattha (Dolichos biflorus)",
+    image: "https://res.cloudinary.com/dhlqc0ymy/image/upload/v1768990566/Kulattha_h5djew.png",
+    pdf: "https://res.cloudinary.com/dhlqc0ymy/image/upload/v1768890034/Kulattha_yuumk1.pdf",
+  },
 ];
