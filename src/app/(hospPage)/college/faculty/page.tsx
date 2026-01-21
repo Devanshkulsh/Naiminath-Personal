@@ -1,225 +1,190 @@
 "use client";
+
 import { useGlobalContext } from "@/app/context/store";
-import { useEffect } from "react";
+import { useEffect, useState } from "react";
+import type { Teacher } from "@/types/teacher";
+import { mapRowToTeacher } from "@/app/(helpers)/mapTeacher";
+
+// ---------- helpers ----------
+const isValidImageUrl = (url?: string) => {
+  if (!url) return false;
+  return url.startsWith("http://") || url.startsWith("https://");
+};
 
 const Faculty = () => {
   const { setImageSlide } = useGlobalContext();
 
+  const [teachers, setTeachers] = useState<Teacher[]>([]);
+  const [loading, setLoading] = useState(true);
+  const [selected, setSelected] = useState<Teacher | null>(null);
+
+  // Disable image slider
   useEffect(() => {
     setImageSlide(false);
   }, [setImageSlide]);
 
-const facList = [
-    {
-      id: 1,
-      name: "Rachana Sharir",
-      faculty: [
-        { name: "Prof. Dr. Ganesh B. Patil", designation: "Professor & HOD" },
-        { name: "Dr. Arup Ratan Das", designation: "Associate Professor" },
-        { name: "Dr. Priyanka Kumari", designation: "Assistant Professor" },
-      ],
+  // Fetch teachers
+  useEffect(() => {
+    fetch("/api/teachers")
+      .then(res => res.json())
+      .then(result => {
+        const rows: string[][] = result.data ?? [];
+        const mapped = rows.slice(1).map(mapRowToTeacher);
+        setTeachers(mapped);
+        setLoading(false);
+      })
+      .catch(() => setLoading(false));
+  }, []);
+
+  // Group teachers by department
+  const groupedByDepartment = teachers.reduce<Record<string, Teacher[]>>(
+    (acc, teacher) => {
+      const dept = teacher.department?.trim();
+      if (!dept) return acc;
+
+      if (!acc[dept]) acc[dept] = [];
+      acc[dept].push(teacher);
+
+      return acc;
     },
-    {
-      id: 2,
-      name: "Kriya Sharir",
-      faculty: [
-        { name: "Prof. Dr. Hemant Lata Gupta", designation: "Professor & HOD" },
-        { name: "Dr. Sandhya Singh", designation: "Associate Professor" },
-        { name: "Dr. Edal Singh Gurjar", designation: "Assistant Professor" },
-      ],
-    },
-    {
-      id: 3,
-      name: "Samhita Evam Siddhant",
-      faculty: [
-        { name: "Prof. Dr. Chandan Singh", designation: "Professor & HOD" },
-        { name: "Prof. Dr. Hazera Khatun", designation: "Associate Professor" },
-        { name: "Dr. Siddharth Jain", designation: "Assistant Professor" },
-        { name: "Dr. Ramvir", designation: "Assistant Professor" },
-        { name: "Mr. Murari Saraswat", designation: "Assistant Professor Sanskrit" },
-      ],
-    },
-    {
-      id: 4,
-      name: "Agad Tantra",
-      faculty: [
-        { name: "Prof. Dr. Brijesh Kumar Sharma", designation: "Professor & HOD" },
-        { name: "Dr. Sourav Pal", designation: "Associate Professor" },
-        { name: "Dr. Jitendra Kumar", designation: "Assistant Professor" },
-      ],
-    },
-    {
-      id: 5,
-      name: "Rog Nidan",
-      faculty: [
-        { name: "Dr.  Vandana Thakur", designation: "Associate Professor" },
-        { name: "Dr. Kshitij Kumar Dubey", designation: "Assistant Professor" },
-      ],
-    },
-    {
-      id: 6,
-      name: "Rasa Shastra Evam Bhaishajya Kalpana",
-      faculty: [
-        { name: "Prof. Dr. Veena I Kale", designation: "Professor & HOD" },
-        { name: "Dr. Shristi Balbhadra", designation: "Associate Professor" },
-        { name: "Dr. Jagdish Gehlot", designation: "Assistant Professor" },
-      ],
-    },
-    {
-      id: 7,
-      name: "Swasthavritta & Yoga",
-      faculty: [
-        { name: "Prof. Dr. Girish M. Shende", designation: "Professor & HOD" },
-        { name: "Dr. Rajat Chaturvedi", designation: "Associate Professor" },
-        { name: "Dr. Bajrang Ramawat", designation: "Assistant Professor" },
-      ],
-    },
-    {
-      id: 8,
-      name: "Dravyaguna",
-      faculty: [
-        { name: "Prof. Dr. Rajesh Kumar Verma", designation: "Professor & HOD" },
-        { name: "Prof. Dr. Pradeep Kumar Srivastava", designation: "Professor & Principal" },
-        { name: "Dr. Virendra Singh", designation: "Assistant Professor" },
-      ],
-    },
-    {
-      id: 9,
-      name: "Kayachikitsha",
-      faculty: [
-        { name: "Prof. Dr. Diyya Shaila Chrysenthia", designation: "Professor & HOD" },
-        { name: "Dr. Pravin Kumar", designation: "Associate Professor" },
-        { name: "Dr. Garima Kashyap", designation: "Assistant Professor" },
-        { name: "Dr. Suman Rani", designation: "Assistant Professor" },
-      ],
-    },
-    {
-      id: 10,
-      name: "Prasuti Evam Stri Roga",
-      faculty: [
-        { name: "Prof. Dr. Anupama Shamsunder Madhekar", designation: "Professor & HOD" },
-        { name: "Dr. Bhawana Yadav", designation: "Associate Professor" },
-        { name: "Dr. Suman Kumari", designation: "Assistant Professor" },
-        { name: "Dr. Vaishali Mishra", designation: "Assistant Professor" },
-      ],
-    },
-    {
-      id: 11,
-      name: "Panchkarma",
-      faculty: [
-        { name: "Prof. Dr. Maheshchandra Bhojraj Kandate", designation: "Professor & HOD" },
-        { name: "Dr. Subhajit Chowdhury", designation: "Associate Professor" },
-        { name: "Dr. Neelam Prakash Dubey", designation: "Assistant Professor" },
-        { name: "Dr. Hemendra Kumar Singh", designation: "Assistant Professor" },
-      ],
-    },
-    {
-      id: 12,
-      name: "Bal Rog",
-      faculty: [
-        { name: "Prof. Dr. Sanjay Kumar Chheepa", designation: "Professor & HOD" },
-        { name: "Dr. Jaipal Poonia", designation: "Assistant Professor" },
-      ],
-    },
-    {
-      id: 13,
-      name: "Shalakya Tantra",
-      faculty: [
-        { name: "Prof. Dr. Devendra Singh Rathore", designation: "Professor & HOD" },
-        { name: "Dr. Sandeep Anand", designation: "Associate Professor" },
-        { name: "Dr. Snehapriya P.R.", designation: "Assistant Professor" },
-      ],
-    },
-    {
-      id: 14,
-      name: "Shalya Tantra",
-      faculty: [
-        { name: "Prof. Dr. Dheeraj Mohan", designation: "Professor & HOD" },
-        { name: "Dr. Sayantan Chakraborty", designation: "Assistant Professor" },
-        { name: "Dr. Indrabir Mishra", designation: "Assistant Professor" },
-      ],
-    },
-    {
-      id: 15,
-      name: "Biostatistics",
-      faculty: [
-        { name: "Mrs. Anjali Bhardwaj", designation: "Biostatistician" },
-      ],
-    },
-    {
-      id: 16,
-      name: "Yoga",
-      faculty: [
-        { name: "Mr. Rahul Dubey", designation: "Yoga Teacher" },
-      ],
-    },
-  ];
-  
+    {}
+  );
 
   return (
     <>
       <head>
         <title>Faculty - Naiminath Ayurveda</title>
-        <meta name="description" content=" " />
+        <meta name="description" content="Faculty details" />
       </head>
 
-      <div className="flex flex-col px-4">
-        <div className="text-3xl mt-10 text-gray-800 text-center font-sans font-bold">
+      <div className="px-4 max-w-7xl mx-auto">
+        <h1 className="text-3xl mt-10 text-gray-800 text-center font-bold">
           Faculty
-        </div>
+        </h1>
 
-        {/* Desktop Table */}
-        <div className="hidden lg:block max-w-6xl mx-auto bg-white p-6 my-10 rounded-md shadow-md ring-1 ring-slate-100 overflow-x-auto">
-          <table className="min-w-full border border-gray-300">
-            <thead className="font-sans bg-gray-200 text-left">
-              <tr>
-                <th className="py-2 px-4 border">S.No.</th>
-                <th className="py-2 px-4 border">Subject</th>
-                <th className="py-2 px-4 border">Faculty Name</th>
-                <th className="py-2 px-4 border">Designation</th>
-              </tr>
-            </thead>
-            <tbody>
-              {facList.map((dept, deptIndex) =>
-                dept.faculty.map((fac, facIndex) => (
-                  <tr key={`${dept.id}-${facIndex}`} className="text-[#748182] font-sans">
-                    {facIndex === 0 && (
-                      <>
-                        <td rowSpan={dept.faculty.length} className="py-2 px-4 border align-top">
-                          {deptIndex + 1}.
-                        </td>
-                        <td rowSpan={dept.faculty.length} className="py-2 px-4 border align-top font-medium">
-                          {dept.name}
-                        </td>
-                      </>
-                    )}
-                    {facIndex !== 0 && null}
-                    <td className="py-2 px-4 border">{fac.name}</td>
-                    <td className="py-2 px-4 border">{fac.designation}</td>
-                  </tr>
-                ))
-              )}
-            </tbody>
-          </table>
-        </div>
+        {loading && (
+          <div className="text-center my-10 text-gray-500">
+            Loading faculty data...
+          </div>
+        )}
 
-        {/* Mobile Card View */}
-        <div className="lg:hidden space-y-6 my-8">
-          {facList.map((dept, deptIndex) => (
-            <div key={dept.id} className="bg-white p-4 rounded-md shadow-md ring-1 ring-gray-100">
-              <div className="text-lg font-semibold mb-2 text-[#374151]">{deptIndex + 1}. {dept.name}</div>
-              <div className="divide-y divide-gray-200">
-                {dept.faculty.map((fac, idx) => (
-                  <div key={idx} className="py-2">
-                    <p className="text-gray-800 font-medium">{fac.name}</p>
-                    <p className="text-gray-500 text-sm">{fac.designation}</p>
+        {!loading && (
+          <div className="space-y-16 my-12">
+            {Object.entries(groupedByDepartment).map(
+              ([department, faculty]) => (
+                <section key={department}>
+                  {/* Department heading */}
+                  <h2 className="text-xl md:text-2xl font-bold text-gray-800 mb-8 uppercase text-center">
+                    DEPARTMENT OF {department}
+                  </h2>
+
+                  {/* Cards */}
+                  <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-6">
+                    {faculty.map((teacher, idx) => (
+                      <div
+                        key={idx}
+                        onClick={() => setSelected(teacher)}
+                        className="cursor-pointer bg-white rounded-xl shadow-md ring-1 ring-gray-200 p-5 hover:shadow-lg hover:-translate-y-1 transition"
+                      >
+                        <img
+                          src={
+                            isValidImageUrl(teacher.photo)
+                              ? teacher.photo
+                              : "/placeholder-avatar.png"
+                          }
+                          alt={teacher.firstName}
+                          className="w-24 h-24 rounded-full mx-auto object-cover"
+                        />
+
+                        <h3 className="text-center mt-4 font-semibold text-gray-800">
+                          {teacher.surname}{" "}
+                          {teacher.firstName}{" "}
+                          {teacher.middleName}
+                        </h3>
+
+                        <p className="text-center text-sm text-gray-500 mt-1">
+                          Teacher Code: {teacher.teacherCode}
+                        </p>
+                      </div>
+                    ))}
                   </div>
-                ))}
-              </div>
-            </div>
-          ))}
-        </div>
+                </section>
+              )
+            )}
+          </div>
+        )}
       </div>
+
+      {/* ================= MODAL ================= */}
+      {selected && (
+        <div className="fixed inset-0 bg-black/60 z-50 flex items-center justify-center px-4">
+          <div className="bg-white rounded-xl max-w-3xl w-full p-6 relative overflow-y-auto max-h-[90vh]">
+            <button
+              className="absolute top-3 right-3 text-xl"
+              onClick={() => setSelected(null)}
+            >
+              ✕
+            </button>
+
+            {/* Header */}
+            <div className="text-center">
+              <img
+                src={
+                  isValidImageUrl(selected.photo)
+                    ? selected.photo
+                    : "/placeholder-avatar.png"
+                }
+                alt={selected.firstName}
+                className="w-32 h-32 rounded-full mx-auto object-cover"
+              />
+
+              <h2 className="text-xl font-bold mt-4">
+                {selected.surname}{" "}
+                {selected.firstName}{" "}
+                {selected.middleName}
+              </h2>
+
+              <p className="text-gray-500">
+                Teacher Code: {selected.teacherCode}
+              </p>
+            </div>
+
+            {/* Details */}
+            <div className="mt-6 space-y-3 text-sm text-gray-800">
+              <p><strong>Father’s Name:</strong> {selected.fatherName}</p>
+              <p><strong>Date of Birth:</strong> {selected.dateOfBirth}</p>
+              <p><strong>Department:</strong> {selected.department}</p>
+              <p><strong>Designation:</strong> {selected.designation}</p>
+              <p><strong>Nature of Appointment:</strong> {selected.appointmentNature}</p>
+              <p><strong>UG Qualification:</strong> {selected.ugQualification}</p>
+              <p><strong>PG Qualification:</strong> {selected.pgQualification}</p>
+              <p><strong>College Name:</strong> {selected.collegeName}</p>
+              <p><strong>State Board & Registration:</strong> {selected.stateBoardRegistration}</p>
+            </div>
+
+            {/* Experience */}
+            <div className="mt-6">
+              <h3 className="font-semibold mb-2">
+                Date wise details of Experience (1st appointment to till date)
+              </h3>
+
+              <ul className="space-y-2 text-sm">
+                {selected.experienceDuration
+                  ?.split(";")
+                  .filter(Boolean)
+                  .map((exp, i) => (
+                    <li
+                      key={i}
+                      className="border-l-2 border-gray-400 pl-3"
+                    >
+                      {exp}
+                    </li>
+                  ))}
+              </ul>
+            </div>
+          </div>
+        </div>
+      )}
     </>
   );
 };
