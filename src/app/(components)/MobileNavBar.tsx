@@ -68,6 +68,7 @@ const MobileNavBar = ({
     { label: "Facilities", path: "/facilities" },
     { label: "Contact", path: "/contactus" },
     { label: "Digital Garden", path: "/digitalgarden" },
+    { label: "Faculty", path: "/faculty" },
     { label: "Admission Open", path: "https://bams-admission.vercel.app/" },
     // Add other links as needed
   ];

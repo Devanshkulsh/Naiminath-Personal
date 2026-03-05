@@ -12,7 +12,7 @@ const NavBar = () => {
   return (
     <header className="my-0 mx-5">
       <nav>
-        <ul className="flex flex-row justify-center items-center space-y-0  space-x-8 
+        <ul className="flex flex-row flex-wrap justify-center items-center gap-x-6 gap-y-2
         text-[#252525] text-[15px] font-bold">
           <li>
             <Link
@@ -344,6 +344,23 @@ const NavBar = () => {
               }}
             >
               Digital Garden
+            </Link>
+          </li>
+          <li>
+            <Link
+              href="/faculty"
+              prefetch
+              className={` p-1.5  hover:text-gray-600 border-[#3b3b3b] ${pathname === "/faculty"
+                ? "border-[2px]"
+                : "border-[0px]"
+                } transition-opacity duration-300 ease-in-out`}
+              scroll={false}
+              onClick={(e) => {
+                //setImageSlide(false);
+                //setActive("contact");
+              }}
+            >
+              Faculty
             </Link>
           </li>
         </ul>
