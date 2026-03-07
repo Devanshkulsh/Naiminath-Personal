@@ -346,7 +346,7 @@ const NavBar = () => {
               Digital Garden
             </Link>
           </li>
-          <li>
+          {/* <li>
             <Link
               href="/faculty"
               prefetch
@@ -356,13 +356,12 @@ const NavBar = () => {
                 } transition-opacity duration-300 ease-in-out`}
               scroll={false}
               onClick={(e) => {
-                //setImageSlide(false);
-                //setActive("contact");
+              
               }}
             >
               Faculty
             </Link>
-          </li>
+          </li> */}
         </ul>
       </nav>
     </header>

@@ -93,185 +93,227 @@ export default function Teachers() {
           </p>
         </div>
 
-      {isLoadingList && (
-        <div className="mx-auto rounded-[10px] border border-[#d6dde8] bg-white p-[18px] text-[#1f2937]">
-          <p>Loading teachers...</p>
-        </div>
-      )}
+        {isLoadingList && (
+          <div className="mx-auto rounded-[10px] border border-[#d6dde8] bg-white p-[18px] text-[#1f2937]">
+            <p>Loading teachers...</p>
+          </div>
+        )}
 
-      {!isLoadingList && listError && (
-        <div className="mx-auto rounded-[10px] border border-[rgba(222,0,0,0.28)] bg-[rgba(255,240,240,0.6)] p-[18px] text-[#8b1c1c]">
-          <p>{listError}</p>
-        </div>
-      )}
+        {!isLoadingList && listError && (
+          <div className="mx-auto rounded-[10px] border border-[rgba(222,0,0,0.28)] bg-[rgba(255,240,240,0.6)] p-[18px] text-[#8b1c1c]">
+            <p>{listError}</p>
+          </div>
+        )}
 
-      {!isLoadingList && !listError && teachers.length === 0 && (
-        <div className="mx-auto rounded-[10px] border border-[#d6dde8] bg-white p-[18px] text-[#1f2937]">
-          <p>No teachers found.</p>
-        </div>
-      )}
+        {!isLoadingList && !listError && teachers.length === 0 && (
+          <div className="mx-auto rounded-[10px] border border-[#d6dde8] bg-white p-[18px] text-[#1f2937]">
+            <p>No teachers found.</p>
+          </div>
+        )}
 
-      {!isLoadingList && !listError && teachers.length > 0 && (
-        <div className="mx-auto grid grid-cols-1 gap-3 md:grid-cols-2 md:gap-4 lg:grid-cols-3 xl:grid-cols-4">
-          {teachers.map((teacher) => (
-            <button
-              type="button"
-              key={teacher._id}
-              className="w-full rounded-xl border border-[#d8dde6] border-t-[3px] border-t-[var(--red)] bg-white p-4 pb-[14px] text-left shadow-[0_4px_10px_rgba(0,0,0,0.04)] transition duration-200 ease-out hover:-translate-y-[3px] hover:border-[rgba(222,0,0,0.35)] hover:shadow-[0_12px_22px_rgba(14,19,23,0.1)]"
-              onClick={() => openTeacher(teacher._id)}
-            >
-              <h3 className="mb-[14px] min-h-[50px] text-[18px] font-semibold leading-[1.25] text-[#101217] md:text-[20px]">
-                {getPersonName(teacher.fullName)}
-              </h3>
-              <p className="mb-2 flex flex-col gap-[2px]">
-                <span className="text-[11px] uppercase tracking-[0.08em] text-[#6f7784]">Code</span>
-                <strong className="break-words text-sm font-semibold text-[#1a1f29]">{teacher.teacherCode || "-"}</strong>
-              </p>
-              <p className="mb-2 flex flex-col gap-[2px]">
-                <span className="text-[11px] uppercase tracking-[0.08em] text-[#6f7784]">Department</span>
-                <strong className="break-words text-sm font-semibold text-[#1a1f29]">{getDepartmentName(teacher.department)}</strong>
-              </p>
-              <p className="mb-2 flex flex-col gap-[2px]">
-                <span className="text-[11px] uppercase tracking-[0.08em] text-[#6f7784]">Photo</span>
-                <strong className="break-words text-sm font-semibold text-[#1a1f29]">
-                  {teacher.teacherPhoto?.asset?.url ? "Available" : "-"}
-                </strong>
-              </p>
-              <div className="mt-1 text-[13px] font-bold text-[var(--red)]">View complete profile</div>
-              {loadingTeacherId === teacher._id && (
-                <small className="font-semibold text-[#3f6cb0]">Loading details...</small>
-              )}
-            </button>
-          ))}
-        </div>
-      )}
-
-      {isModalOpen && selectedTeacher && (
-        <div
-          className="fixed inset-0 z-[1000] flex items-center justify-center bg-[rgba(13,19,23,0.68)] p-5"
-          onClick={closeModal}
-        >
-          <div
-            className="max-h-[86vh] w-full max-w-[760px] overflow-y-auto rounded-xl border-t-4 border-t-[var(--red)] bg-white px-[18px] pt-[18px] pb-5 shadow-[0_24px_42px_rgba(0,0,0,0.22)]"
-            onClick={(e) => e.stopPropagation()}
-          >
-            <div className="mb-[14px] flex items-start justify-between gap-4">
-              <div>
-                <p className="m-0 text-[11px] font-bold uppercase tracking-[0.08em] text-[#566074]">
-                  Naiminath Faculty Details
-                </p>
-                <h2 className="mt-1 text-[22px] leading-tight text-[#101217] md:text-[28px]">
-                  {getPersonName(selectedTeacher.fullName)}
-                </h2>
+        {!isLoadingList && !listError && teachers.length > 0 && (
+          <div className="mx-auto grid grid-cols-1 gap-4 sm:grid-cols-2 md:gap-5 lg:grid-cols-3 xl:grid-cols-4">
+            {teachers.map((teacher) => (
+              <div
+                key={teacher._id}
+                className="group overflow-hidden rounded-2xl border border-[#e0e5eb] bg-white shadow-[0_2px_8px_rgba(0,0,0,0.06)] transition-all duration-300 hover:-translate-y-1 hover:shadow-[0_8px_24px_rgba(0,0,0,0.12)]"
+              >
+                <div className="relative h-[220px] overflow-hidden bg-gradient-to-br from-[#f5f7fa] to-[#e8ecf1]">
+                  {teacher.teacherPhoto?.asset?.url ? (
+                    <img
+                      src={teacher.teacherPhoto.asset.url}
+                      alt={getPersonName(teacher.fullName)}
+                      className="h-full w-full object-cover transition-transform duration-300 group-hover:scale-105"
+                    />
+                  ) : (
+                    <div className="flex h-full items-center justify-center">
+                      <div className="flex h-24 w-24 items-center justify-center rounded-full bg-[var(--red)] text-4xl font-bold text-white">
+                        {getPersonName(teacher.fullName).charAt(0).toUpperCase()}
+                      </div>
+                    </div>
+                  )}
+                  <div className="absolute inset-0 bg-gradient-to-t from-black/40 via-transparent to-transparent opacity-0 transition-opacity duration-300 group-hover:opacity-100" />
+                </div>
+                <div className="p-4">
+                  <h3 className="mb-2 line-clamp-2 min-h-[3rem] text-[17px] font-bold leading-tight text-[#1a1f29]">
+                    {getPersonName(teacher.fullName)}
+                  </h3>
+                  <p className="mb-3 text-sm text-[#5a6c7d]">
+                    <div>
+                      Department
+                    </div>
+                    <span className="font-medium">{getDepartmentName(teacher.department)}</span>
+                  </p>
+                  <button
+                    type="button"
+                    className="w-full rounded-lg bg-[var(--red)] px-4 py-2.5 text-sm font-semibold text-white transition-all hover:bg-[#b91c1c] active:scale-[0.98]"
+                    onClick={() => openTeacher(teacher._id)}
+                    disabled={loadingTeacherId === teacher._id}
+                  >
+                    {loadingTeacherId === teacher._id ? "Loading..." : "View More"}
+                  </button>
+                </div>
               </div>
+            ))}
+          </div>
+        )}
+
+        {isModalOpen && selectedTeacher && (
+          <div
+            className="fixed inset-0 z-[1000] flex items-center justify-center bg-black/60 p-4 backdrop-blur-sm"
+            onClick={closeModal}
+          >
+            <div
+              className="relative max-h-[92vh] w-full max-w-[920px] overflow-hidden rounded-2xl bg-white shadow-2xl"
+              onClick={(e) => e.stopPropagation()}
+            >
               <button
                 type="button"
-                className="cursor-pointer rounded-lg border border-[rgba(222,0,0,0.35)] bg-[rgba(222,0,0,0.08)] px-[14px] py-2 font-semibold text-[#8f1616] transition hover:border-[var(--red)] hover:bg-[var(--red)] hover:text-white"
+                className="absolute right-4 top-4 z-10 flex h-10 w-10 items-center justify-center rounded-full bg-white text-xl text-gray-700 shadow-lg transition hover:bg-gray-100"
                 onClick={closeModal}
               >
-                Close
+                ✕
               </button>
-            </div>
 
-            <div className="grid grid-cols-1 gap-3 md:grid-cols-2 lg:grid-cols-3">
-              <p className="m-0 flex flex-col gap-[2px] rounded-[10px] border border-[#e2e6ec] bg-[#fcfcfd] px-3 py-[10px]">
-                <span className="text-[11px] uppercase tracking-[0.08em] text-[#6d7683]">Teacher Code</span>
-                <strong className="break-words text-[#171b24]">{selectedTeacher.teacherCode || "-"}</strong>
-              </p>
-              <p className="m-0 flex flex-col gap-[2px] rounded-[10px] border border-[#e2e6ec] bg-[#fcfcfd] px-3 py-[10px]">
-                <span className="text-[11px] uppercase tracking-[0.08em] text-[#6d7683]">Department</span>
-                <strong className="break-words text-[#171b24]">{getDepartmentName(selectedTeacher.department)}</strong>
-              </p>
-              <p className="m-0 flex flex-col gap-[2px] rounded-[10px] border border-[#e2e6ec] bg-[#fcfcfd] px-3 py-[10px]">
-                <span className="text-[11px] uppercase tracking-[0.08em] text-[#6d7683]">Father Name</span>
-                <strong className="break-words text-[#171b24]">{getPersonName(selectedTeacher.fatherName)}</strong>
-              </p>
-              <p className="m-0 flex flex-col gap-[2px] rounded-[10px] border border-[#e2e6ec] bg-[#fcfcfd] px-3 py-[10px]">
-                <span className="text-[11px] uppercase tracking-[0.08em] text-[#6d7683]">DOB</span>
-                <strong className="break-words text-[#171b24]">{selectedTeacher.dob || "-"}</strong>
-              </p>
-              <p className="m-0 flex flex-col gap-[2px] rounded-[10px] border border-[#e2e6ec] bg-[#fcfcfd] px-3 py-[10px]">
-                <span className="text-[11px] uppercase tracking-[0.08em] text-[#6d7683]">Qualification</span>
-                <strong className="break-words text-[#171b24]">
-                  UG:{" "}
-                  {selectedTeacher.ugQualification
-                    ? `${selectedTeacher.ugQualification.university || "-"} (${selectedTeacher.ugQualification.year || "-"})`
-                    : "-"}
-                </strong>
-              </p>
-            </div>
+              <div className="max-h-[92vh] overflow-y-auto">
+                {selectedTeacher.teacherPhoto?.asset?.url ? (
+                  <div className="relative h-[280px] w-full bg-gradient-to-br from-gray-100 to-gray-200">
+                    <img
+                      src={selectedTeacher.teacherPhoto.asset.url}
+                      alt={getPersonName(selectedTeacher.fullName)}
+                      className="h-full w-full object-contain"
+                    />
+                    <div className="absolute bottom-0 left-0 right-0 bg-gradient-to-t from-black/70 via-black/40 to-transparent p-6 pt-20">
+                      <h2 className="text-3xl font-bold text-white">
+                        {getPersonName(selectedTeacher.fullName)}
+                      </h2>
+                      <p className="mt-1 text-lg text-white/90">{getDepartmentName(selectedTeacher.department)}</p>
+                    </div>
+                  </div>
+                ) : (
+                  <div className="bg-gradient-to-br from-[var(--red)] to-red-700 p-8">
+                    <div className="flex items-center gap-5">
+                      <div className="flex h-20 w-20 flex-shrink-0 items-center justify-center rounded-full bg-white/20 text-4xl font-bold text-white backdrop-blur-sm">
+                        {getPersonName(selectedTeacher.fullName).charAt(0).toUpperCase()}
+                      </div>
+                      <div>
+                        <h2 className="text-3xl font-bold text-white">
+                          {getPersonName(selectedTeacher.fullName)}
+                        </h2>
+                        <p className="mt-1 text-lg text-white/90">{getDepartmentName(selectedTeacher.department)}</p>
+                      </div>
+                    </div>
+                  </div>
+                )}
 
-            <div className="mt-3 grid grid-cols-1 gap-3 md:grid-cols-2 lg:grid-cols-3">
-              <p className="m-0 flex flex-col gap-[2px] rounded-[10px] border border-[#e2e6ec] bg-[#fcfcfd] px-3 py-[10px]">
-                <span className="text-[11px] uppercase tracking-[0.08em] text-[#6d7683]">PG Qualification</span>
-                <strong className="break-words text-[#171b24]">
-                  {selectedTeacher.pgQualification
-                    ? `${selectedTeacher.pgQualification.subject || "-"}, ${selectedTeacher.pgQualification.university || "-"} (${selectedTeacher.pgQualification.year || "-"})`
-                    : "-"}
-                </strong>
-              </p>
-              <p className="m-0 flex flex-col gap-[2px] rounded-[10px] border border-[#e2e6ec] bg-[#fcfcfd] px-3 py-[10px]">
-                <span className="text-[11px] uppercase tracking-[0.08em] text-[#6d7683]">Nature of Appointment</span>
-                <strong className="break-words text-[#171b24]">{selectedTeacher.natureOfPresentAppointment || "-"}</strong>
-              </p>
-              <p className="m-0 flex flex-col gap-[2px] rounded-[10px] border border-[#e2e6ec] bg-[#fcfcfd] px-3 py-[10px]">
-                <span className="text-[11px] uppercase tracking-[0.08em] text-[#6d7683]">Local Residential Address</span>
-                <strong className="break-words text-[#171b24]">{selectedTeacher.localResidentialAddress || "-"}</strong>
-              </p>
-              <p className="m-0 flex flex-col gap-[2px] rounded-[10px] border border-[#e2e6ec] bg-[#fcfcfd] px-3 py-[10px]">
-                <span className="text-[11px] uppercase tracking-[0.08em] text-[#6d7683]">Permanent Address</span>
-                <strong className="break-words text-[#171b24]">{selectedTeacher.permanentAddress || "-"}</strong>
-              </p>
-              <p className="m-0 flex flex-col gap-[2px] rounded-[10px] border border-[#e2e6ec] bg-[#fcfcfd] px-3 py-[10px]">
-                <span className="text-[11px] uppercase tracking-[0.08em] text-[#6d7683]">State Board</span>
-                <strong className="break-words text-[#171b24]">
-                  {selectedTeacher.stateBoardRegistration?.boardName || "-"}
-                </strong>
-              </p>
-              <p className="m-0 flex flex-col gap-[2px] rounded-[10px] border border-[#e2e6ec] bg-[#fcfcfd] px-3 py-[10px]">
-                <span className="text-[11px] uppercase tracking-[0.08em] text-[#6d7683]">Registration Number</span>
-                <strong className="break-words text-[#171b24]">
-                  {selectedTeacher.stateBoardRegistration?.registrationNumber ||
-                    "-"}
-                </strong>
-              </p>
-            </div>
+                <div className="p-6 md:p-8">
+                  <div className="space-y-6">
+                    <div className="rounded-xl border border-gray-200 bg-gradient-to-br from-gray-50 to-white p-5">
+                      <h3 className="mb-4 flex items-center gap-2 text-base font-bold text-gray-700">
+                        <span className="text-[var(--red)]">●</span> Basic Information
+                      </h3>
+                      <div className="grid gap-4 sm:grid-cols-2">
+                        <div>
+                          <p className="text-xs font-semibold uppercase tracking-wide text-gray-500">Teacher Code</p>
+                          <p className="mt-1.5 text-base font-semibold text-gray-900">{selectedTeacher.teacherCode || "-"}</p>
+                        </div>
+                        <div>
+                          <p className="text-xs font-semibold uppercase tracking-wide text-gray-500">Father Name</p>
+                          <p className="mt-1.5 text-base font-semibold text-gray-900">{getPersonName(selectedTeacher.fatherName)}</p>
+                        </div>
+                        <div>
+                          <p className="text-xs font-semibold uppercase tracking-wide text-gray-500">Date of Birth</p>
+                          <p className="mt-1.5 text-base font-semibold text-gray-900">{selectedTeacher.dob || "-"}</p>
+                        </div>
+                        <div>
+                          <p className="text-xs font-semibold uppercase tracking-wide text-gray-500">Nature of Appointment</p>
+                          <p className="mt-1.5 text-base font-semibold text-gray-900">{selectedTeacher.natureOfPresentAppointment || "-"}</p>
+                        </div>
+                      </div>
+                    </div>
 
-            {selectedTeacher.teacherPhoto?.asset?.url && (
-              <div className="mt-4 border-t border-[#e5ebf3] pt-[14px]">
-                <h3 className="text-[18px] font-semibold text-[#141923]">Teacher Photo</h3>
-                <img
-                  src={selectedTeacher.teacherPhoto.asset.url}
-                  alt={getPersonName(selectedTeacher.fullName)}
-                  className="mt-2 h-[150px] w-[150px] rounded-[10px] border border-[#d8dde6] object-cover"
-                />
-                <p className="mt-[6px] text-xs text-[#5e6b80]">
-                  {selectedTeacher.teacherPhoto.caption || ""}
-                </p>
-              </div>
-            )}
+                    <div className="rounded-xl border border-gray-200 bg-gradient-to-br from-blue-50 to-white p-5">
+                      <h3 className="mb-4 flex items-center gap-2 text-base font-bold text-gray-700">
+                        <span className="text-blue-600">●</span> Qualifications
+                      </h3>
+                      <div className="space-y-4">
+                        <div>
+                          <p className="text-xs font-semibold uppercase tracking-wide text-gray-500">UG Qualification</p>
+                          <p className="mt-1.5 text-base font-semibold text-gray-900">
+                            {selectedTeacher.ugQualification
+                              ? `${selectedTeacher.ugQualification.university || "-"} (${selectedTeacher.ugQualification.year || "-"})`
+                              : "-"}
+                          </p>
+                        </div>
+                        <div>
+                          <p className="text-xs font-semibold uppercase tracking-wide text-gray-500">PG Qualification</p>
+                          <p className="mt-1.5 text-base font-semibold text-gray-900">
+                            {selectedTeacher.pgQualification
+                              ? `${selectedTeacher.pgQualification.subject || "-"}, ${selectedTeacher.pgQualification.university || "-"} (${selectedTeacher.pgQualification.year || "-"})`
+                              : "-"}
+                          </p>
+                        </div>
+                      </div>
+                    </div>
 
-            {Array.isArray(selectedTeacher.experience) &&
-              selectedTeacher.experience.length > 0 && (
-                <div className="mt-4 border-t border-[#e5ebf3] pt-[14px]">
-                  <h3 className="mb-2 text-[18px] font-semibold text-[#141923]">Experience</h3>
-                  <ul className="pl-[18px] text-[#33445f]">
-                    {selectedTeacher.experience.map((exp, index: number) => (
-                      <li key={exp._key || index} className={index > 0 ? "mt-[6px]" : ""}>
-                        <strong>{exp.designation || "-"}</strong> at{" "}
-                        {exp.collegeName || "-"}
-                        <br />
-                        {exp.durationType === "single"
-                          ? `Date: ${exp.singleDate || "-"}`
-                          : `From: ${formatDate(exp.fromDate)} | To: ${formatDate(exp.toDate)}`}
-                      </li>
-                    ))}
-                  </ul>
+                    <div className="rounded-xl border border-gray-200 bg-gradient-to-br from-green-50 to-white p-5">
+                      <h3 className="mb-4 flex items-center gap-2 text-base font-bold text-gray-700">
+                        <span className="text-green-600">●</span> Contact Information
+                      </h3>
+                      <div className="space-y-4">
+                        <div>
+                          <p className="text-xs font-semibold uppercase tracking-wide text-gray-500">Local Address</p>
+                          <p className="mt-1.5 text-base font-semibold text-gray-900">{selectedTeacher.localResidentialAddress || "-"}</p>
+                        </div>
+                        <div>
+                          <p className="text-xs font-semibold uppercase tracking-wide text-gray-500">Permanent Address</p>
+                          <p className="mt-1.5 text-base font-semibold text-gray-900">{selectedTeacher.permanentAddress || "-"}</p>
+                        </div>
+                      </div>
+                    </div>
+
+                    <div className="rounded-xl border border-gray-200 bg-gradient-to-br from-purple-50 to-white p-5">
+                      <h3 className="mb-4 flex items-center gap-2 text-base font-bold text-gray-700">
+                        <span className="text-purple-600">●</span> Registration Details
+                      </h3>
+                      <div className="grid gap-4 sm:grid-cols-2">
+                        <div>
+                          <p className="text-xs font-semibold uppercase tracking-wide text-gray-500">State Board</p>
+                          <p className="mt-1.5 text-base font-semibold text-gray-900">{selectedTeacher.stateBoardRegistration?.boardName || "-"}</p>
+                        </div>
+                        <div>
+                          <p className="text-xs font-semibold uppercase tracking-wide text-gray-500">Registration Number</p>
+                          <p className="mt-1.5 text-base font-semibold text-gray-900">{selectedTeacher.stateBoardRegistration?.registrationNumber || "-"}</p>
+                        </div>
+                      </div>
+                    </div>
+
+                    {Array.isArray(selectedTeacher.experience) && selectedTeacher.experience.length > 0 && (
+                      <div className="rounded-xl border border-gray-200 bg-gradient-to-br from-orange-50 to-white p-5">
+                        <h3 className="mb-4 flex items-center gap-2 text-base font-bold text-gray-700">
+                          <span className="text-orange-600">●</span> Experience
+                        </h3>
+                        <div className="space-y-3">
+                          {selectedTeacher.experience.map((exp, index: number) => (
+                            <div key={exp._key || index} className="rounded-lg border-l-4 border-[var(--red)] bg-white p-4 shadow-sm">
+                              <p className="text-base font-bold text-gray-900">{exp.designation || "-"}</p>
+                              <p className="mt-1 text-sm text-gray-600">{exp.collegeName || "-"}</p>
+                              <p className="mt-2 text-xs font-medium text-gray-500">
+                                {exp.durationType === "single"
+                                  ? `Date: ${exp.singleDate || "-"}`
+                                  : `${formatDate(exp.fromDate)} - ${formatDate(exp.toDate)}`}
+                              </p>
+                            </div>
+                          ))}
+                        </div>
+                      </div>
+                    )}
+                  </div>
                 </div>
-              )}
+              </div>
+            </div>
           </div>
-        </div>
-      )}
+        )}
       </div>
     </section>
   );
