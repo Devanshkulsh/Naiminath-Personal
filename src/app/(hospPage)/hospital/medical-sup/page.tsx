@@ -62,7 +62,7 @@ const MedicalSup = () => {
                   Name : <span className="font-normal text-gray-700">Prof. Dr. Sanjay Kumar Chheepa</span>
                 </p>
                 <p>
-                  Department : <span className="font-normal text-gray-700">Kaumarbritya  </span>
+                  Department : <span className="font-normal text-gray-700">Kaumarbhritya  </span>
                 </p>
                 <p>
                   D.O.B.: <span className="font-normal text-gray-700">30-04-1981</span>
