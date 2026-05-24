@@ -59,30 +59,30 @@ const MedicalSup = () => {
             <div className="mt-4 leading-relaxed text-red-500 px-6">
               <div className=" font-serif">
                 <p>
-                  Name : <span className="font-normal text-gray-700">Prof. Dr. Pradeep Kumar Srivastava</span>
+                  Name : <span className="font-normal text-gray-700">Prof. Dr. Sanjay Kumar Chheepa</span>
                 </p>
                 <p>
-                  Department : <span className="font-normal text-gray-700">Dravyaguna </span>
+                  Department : <span className="font-normal text-gray-700">Kaumarbritya  </span>
                 </p>
                 <p>
-                  D.O.B.: <span className="font-normal text-gray-700">24-Oct-1962</span>
+                  D.O.B.: <span className="font-normal text-gray-700">30-04-1981</span>
                 </p>
                 <p>
-                  Teacher Code: <span className="font-normal text-gray-700">AYDG01139</span>
+                  Teacher Code: <span className="font-normal text-gray-700">AYKC01851</span>
                 </p>
                 <p>
-                  Date of Joining: <span className="font-normal text-gray-700">29/09/2023</span>
+                  Date of Joining: <span className="font-normal text-gray-700"> 09-08-2024</span>
                 </p>
                 <p>
                   Teaching Experience:{" "}
-                  <span className="font-normal text-gray-700">29 years</span>
+                  <span className="font-normal text-gray-700">11 Years 9 months</span>
                 </p>
               </div>
 
               <div className="mt-4">
                 <p className=" font-serif text-red-500">Current Address:</p>
                 <span className="ml-4 text-gray-700">
-                  Plot No. 3, Shankar Puri, Near Ram Navjeevan Nursing Home, Agra, U.P. - 282010
+                  House No. 3 Radha Vihar Bhood ke bagh, Kamla nagar, new Agra. UP 282005 
                 </span>
               </div>
 
@@ -146,13 +146,15 @@ const MedicalSup = () => {
               <p className="ml-4">
                 <span className="text-black">1.</span>{" "}
 
-                <span className="font-normal">
-                  UG Qualification (University & Year): Kanpur University, Kanpur - 1986
+                <span className="font-normal capitalize">
+                  UG Qualification (University & Year): AWADESH PRATAP SINGH VISHWAVIDYALAYA, REWA 2008
                 </span>
               </p>
               <p className="ml-4">
                 <span className="text-black">2.</span>{" "}
-                <span className="font-normal">PG Qualification with Subject (University & Year): Rajasthan University, Jaipur - 1992</span>
+                <span className="font-normal capitalize">
+                  PG Qualification with Subject (University & Year): VIKRAM VISHWAVIDYALAYA, UJJAIN 2013
+                </span>
               </p>
             </div>
           </details>
