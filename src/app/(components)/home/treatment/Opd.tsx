@@ -13,6 +13,7 @@ const Opd = () => {
         { image: "/images/opd5.jpg", text: "Shalakya Tantra", link: "https://naiminathayurveda.org/hospital/opd?id=4" },
         { image: "/images/opd6.jpg", text: "Shalya Tantra", link: "https://naiminathayurveda.org/hospital/opd?id=5" },
         { image: "/images/opd7.jpg", text: "Swasthavritta", link: "https://naiminathayurveda.org/hospital/opd?id=6" },
+        { image: "/images/opd7.jpg", text: "Agad OPD", link: "https://naiminathayurveda.org/hospital/opd?id=6" },
     ]
 
     var settings = {

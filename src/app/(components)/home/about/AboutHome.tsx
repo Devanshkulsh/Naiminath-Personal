@@ -22,7 +22,7 @@ const AboutHome = () => {
                                         medicine. We are a 100 bedded state of art Ayurvedic
                                         Hospital which is functional since 2016, where more than 200
                                         patients visit the Outpatient Department every day and
-                                        around 40 patients are present in the Inpatient Department.{" "}
+                                        around 60 patients are present in the Inpatient Department.{" "}
                                         <br />
                                         <br />
                                         The college offers a comprehensive curriculum that not only
