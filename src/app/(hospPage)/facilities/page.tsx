@@ -67,6 +67,7 @@ const Facilities = () => {
             <li className="mb-2">Canteen</li>
             <li className="mb-2">Telemedicine</li>
             <li className="mb-2">Obesity clinic</li>
+            <li className="mb-2">Dental Dialysis</li>
             <li className="mb-2">
               IPD (General, Semi-private, deluxe and super deluxe rooms)
             </li>

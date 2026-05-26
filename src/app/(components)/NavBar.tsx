@@ -162,6 +162,15 @@ const NavBar = () => {
                       }
                       }>Swasthavritta
                     </Dropdown.Item>
+                        <Dropdown.Divider size="xs" />
+                    <Dropdown.Item className="text-[12px]"
+                      onClick={() => {
+                        //setImageSlide(false);
+                        router.push(`/hospital/opd?id=${7}`)
+                      }
+                      }>
+                        Agad OPD
+                    </Dropdown.Item>
                   </Dropdown.Submenu>
                 </Dropdown.Item>
                 <Dropdown.Divider size="xs" />

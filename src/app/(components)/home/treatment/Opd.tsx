@@ -11,9 +11,9 @@ const Opd = () => {
         { image: "/images/opd3.jpg", text: "Panchkarma", link: "https://naiminathayurveda.org/hospital/opd?id=2" },
         { image: "/images/opd4.jpg", text: "Prasuti & Stri Roga", link: "https://naiminathayurveda.org/hospital/opd?id=3" },
         { image: "/images/opd5.jpg", text: "Shalakya Tantra", link: "https://naiminathayurveda.org/hospital/opd?id=4" },
-        { image: "/images/opd6.jpg", text: "Shalya Tantra", link: "https://naiminathayurveda.org/hospital/opd?id=5" },
-        { image: "/images/opd7.jpg", text: "Swasthavritta", link: "https://naiminathayurveda.org/hospital/opd?id=6" },
-        { image: "/images/opd7.jpg", text: "Agad OPD", link: "https://naiminathayurveda.org/hospital/opd?id=6" },
+        { image: "/images/opd6.jpg", text: "Agad OPD", link: "https://naiminathayurveda.org/hospital/opd?id=7" },
+        { image: "/images/opd7.jpg", text: "Shalya Tantra", link: "https://naiminathayurveda.org/hospital/opd?id=5" },
+        { image: "/images/opd8.jpg", text: "Swasthavritta", link: "https://naiminathayurveda.org/hospital/opd?id=6" },
     ]
 
     var settings = {

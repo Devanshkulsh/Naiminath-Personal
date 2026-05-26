@@ -82,12 +82,12 @@ const Hospital = ({
       meta: (
         <head>
           <title>Kayachikitsa - Naiminath Ayurveda </title>
-          <meta name="description" content="Discover holistic healing with Kayachikitsa at Naminath Aryuveda. Our Ayurveda OPD offers personalized consultations for a healthier and balanced life"/>
+          <meta name="description" content="Discover holistic healing with Kayachikitsa at Naminath Aryuveda. Our Ayurveda OPD offers personalized consultations for a healthier and balanced life" />
         </head>
       ),
-      image:"kayachikitsa.webp"
+      image: "kayachikitsa.webp"
     },
-      
+
     {
       title: "Kaumarbhritya",
       content: (
@@ -128,11 +128,11 @@ const Hospital = ({
       ),
       meta: (
         <head>
-         <title>Kaumarbhritya - Naiminath Ayurveda</title>
-         <meta name="description" content="Explore Kaumarbhritya at Naminath Ayurveda for comprehensive pediatric care. Our experts blend traditional wisdom with modern healthcare for your child's well-being "/>
+          <title>Kaumarbhritya - Naiminath Ayurveda</title>
+          <meta name="description" content="Explore Kaumarbhritya at Naminath Ayurveda for comprehensive pediatric care. Our experts blend traditional wisdom with modern healthcare for your child's well-being " />
         </head>
       ),
-      image:"kaumarbhritya.jpg"
+      image: "kaumarbhritya.jpg"
     },
     {
       title: "Panchkarma",
@@ -157,8 +157,8 @@ const Hospital = ({
           </p>
           <br />
 
-         <ImageGallery/>
-{/*  <div className="flex flex-wrap flex-row flex-4 gap-2 justify-center mx-2 md:mx-10 my-10">
+          <ImageGallery />
+          {/*  <div className="flex flex-wrap flex-row flex-4 gap-2 justify-center mx-2 md:mx-10 my-10">
 
     <img className="rounded-md w-auto aspect-auto max-h-60" src="/images/opd/panchkarma-patients1.jpeg" alt="Panchkarma Patients" />
 
@@ -191,11 +191,11 @@ const Hospital = ({
       ),
       meta: (
         <head>
-         <title>Panchkarma - Naiminath Ayurveda</title>
-         <meta name="description" content="Embark on your healing journey with Panchakarma at Naminath Ayurveda. Rejuvenate your body, mind, and spirit through authentic therapies for lasting well-being"/>
+          <title>Panchkarma - Naiminath Ayurveda</title>
+          <meta name="description" content="Embark on your healing journey with Panchakarma at Naminath Ayurveda. Rejuvenate your body, mind, and spirit through authentic therapies for lasting well-being" />
         </head>
       ),
-      image:"panchakarma.jpeg"
+      image: "panchakarma.jpeg"
     },
     {
       title: "Prasuti & Stri Roga",
@@ -234,10 +234,10 @@ const Hospital = ({
       meta: (
         <head>
           <title>Prasuti Stri Roga - Naiminath Ayurveda</title>
-          <meta name="description" content="Experience compassionate care for maternal health with Prasuti Stri Roga at Naminath Ayurveda. Our expert team ensures a holistic approach for a healthy pregnancy and postpartum"/>
+          <meta name="description" content="Experience compassionate care for maternal health with Prasuti Stri Roga at Naminath Ayurveda. Our expert team ensures a holistic approach for a healthy pregnancy and postpartum" />
         </head>
       ),
-      image:"prasuti.jpg"
+      image: "prasuti.jpg"
     },
     {
       title: "Shalakya Tantra",
@@ -309,11 +309,11 @@ const Hospital = ({
       ),
       meta: (
         <head>
-         <title>Shalakya Tantra - Naiminath Ayurveda</title>
-         <meta name="description" content="Discover specialized care for head and neck disorders with Shalakya Tantra at Naminath Ayurveda. Our expert treatments ensure comprehensive relief and well-being"/>
+          <title>Shalakya Tantra - Naiminath Ayurveda</title>
+          <meta name="description" content="Discover specialized care for head and neck disorders with Shalakya Tantra at Naminath Ayurveda. Our expert treatments ensure comprehensive relief and well-being" />
         </head>
       ),
-      image:"shalakya.jpeg"
+      image: "shalakya.jpeg"
     },
     {
       title: "Shalya Tantra",
@@ -375,11 +375,11 @@ const Hospital = ({
       ),
       meta: (
         <head>
-        <title>Shalya Tantra - Naiminath Ayurveda</title>
-        <meta name="description" content="Experience advanced surgical care rooted in Ayurveda with Shalya Tantra at Naminath Ayurveda. Our expert treatments ensure effective solutions for surgical conditions and postoperative care"/>
+          <title>Shalya Tantra - Naiminath Ayurveda</title>
+          <meta name="description" content="Experience advanced surgical care rooted in Ayurveda with Shalya Tantra at Naminath Ayurveda. Our expert treatments ensure effective solutions for surgical conditions and postoperative care" />
         </head>
       ),
-      image:"kayachikitsa.webp"
+      image: "kayachikitsa.webp"
     },
     {
       title: "Swasthvritta",
@@ -422,10 +422,56 @@ const Hospital = ({
       meta: (
         <head>
           <title>Swasthavritta - Naiminath Ayurveda</title>
-          <meta name="description" content="Explore Swasthavritta at Naminath Ayurveda—Ayurvedic wisdom for disease prevention through holistic practices. Embrace well-being with diet, hygiene, and yoga for a healthier life"/>
+          <meta name="description" content="Explore Swasthavritta at Naminath Ayurveda—Ayurvedic wisdom for disease prevention through holistic practices. Embrace well-being with diet, hygiene, and yoga for a healthier life" />
         </head>
       ),
-      image:"about_home_bg.jpg"
+      image: "about_home_bg.jpg"
+    },
+    {
+      title: "Agad OPD",
+      content: (
+        <>
+          <p className="mt-2">
+            Agad Tantra OPD in Ayurveda focuses on the diagnosis, management, and
+            prevention of toxicological disorders and medico-legal conditions.
+            Agad Tantra, one of the important branches of Ayurveda, deals with the
+            study of poisons originating from plants, animals, minerals, and
+            artificial sources along with their effects on the human body. The OPD
+            provides holistic Ayurvedic care for poisoning cases, food toxicity,
+            allergic reactions, insect and snake bites, and various environmental
+            toxicities through classical Ayurvedic principles and therapies.
+          </p>
+          <br />
+          <p>
+            Ayurveda emphasizes the importance of maintaining a toxin-free body and
+            environment for preserving health and longevity. Agad OPD integrates
+            traditional Ayurvedic detoxification methods, herbal formulations, and
+            preventive healthcare approaches for effective management of toxic
+            conditions and lifestyle-related disorders.
+          </p>
+          <br />
+          <div>
+            <ul className="list-disc ml-8">
+              <li>Management of food poisoning and toxic reactions</li>
+              <li>Treatment support for insect, snake, and animal bites</li>
+              <li>Care for allergic and environmental toxic conditions</li>
+              <li>Medico-legal consultation and toxicology guidance</li>
+              <li>Detoxification and preventive Ayurvedic therapies</li>
+            </ul>
+          </div>
+          <br />
+        </>
+      ),
+      meta: (
+        <head>
+          <title>Agad OPD - Naiminath Ayurveda</title>
+          <meta
+            name="description"
+            content="Explore Agad OPD at Naiminath Ayurveda—specialized Ayurvedic toxicology and preventive healthcare for poison management, detoxification, allergies, and holistic wellness."
+          />
+        </head>
+      ),
+      image: "about_home_bg.jpg"
     },
     {
       title: "Abhyangam Treatment",
@@ -441,7 +487,7 @@ const Hospital = ({
           />
         </head>
       ),
-      image:""
+      image: ""
     },
     {
       title: "Shirodhara",
@@ -462,7 +508,7 @@ const Hospital = ({
           />
         </head>
       ),
-      image:""
+      image: ""
     },
     {
       title: "Kashayadhara Treatment: The Holistic Healing Experience",
@@ -480,7 +526,7 @@ const Hospital = ({
           />
         </head>
       ),
-      image:""
+      image: ""
     },
     {
       title: "Greeva Basti Treatment: Relieve Neck and Shoulder Discomfort",
@@ -498,7 +544,7 @@ const Hospital = ({
           />
         </head>
       ),
-      image:""
+      image: ""
     },
     {
       title: "Janu Basti Treatment: Soothe and Revitalize Your Knees",
@@ -516,7 +562,7 @@ const Hospital = ({
           />
         </head>
       ),
-      image:""
+      image: ""
     },
     {
       title: "Kati Basti Treatment: Easing Your Way to a Pain-Free Back",
@@ -534,7 +580,7 @@ const Hospital = ({
           />
         </head>
       ),
-      image:""
+      image: ""
     },
     {
       title: "Spine Basti: Holistic Healing for Your Backbone",
@@ -552,7 +598,7 @@ const Hospital = ({
           />
         </head>
       ),
-      image:""
+      image: ""
     },
     {
       title: "Kizhi Treatment: A Healing Experience for Body and Soul ",
@@ -570,7 +616,7 @@ const Hospital = ({
           />
         </head>
       ),
-      image:""
+      image: ""
     },
     {
       title: "Mukha Lepam: Revitalize Your Skin with Ayurvedic Care ",
@@ -588,7 +634,7 @@ const Hospital = ({
           />
         </head>
       ),
-      image:""
+      image: ""
     },
     {
       title: "Discover the Healing Benefits of Netra Tarpanam Treatment",
@@ -606,11 +652,11 @@ const Hospital = ({
           />
         </head>
       ),
-      image:""
+      image: ""
     },
   ];
 
- const rounter = useRouter();
+  const rounter = useRouter();
 
   const [itemsContent, setItemsContent] = useState(items[id]);
   const [currentId, setCurrentId] = useState(id);
@@ -638,11 +684,11 @@ const Hospital = ({
           {itemsContent.title}
         </div>
         <div className={`flex md:flex-row flex-col w-full justify-center items-start md:pt-12 pb-16 bg-[')] 
-        bg-no-repeat bg-cover bg-center`}  
-        style={{
-          backgroundImage: `linear-gradient(93deg, rgb(246 255 238), rgb(255 255 255 / 65% ), #f5ffa399), url('/images/opd/${itemsContent.image}')`,
-          backgroundSize: 'cover',
-        }}>
+        bg-no-repeat bg-cover bg-center`}
+          style={{
+            backgroundImage: `linear-gradient(93deg, rgb(246 255 238), rgb(255 255 255 / 65% ), #f5ffa399), url('/images/opd/${itemsContent.image}')`,
+            backgroundSize: 'cover',
+          }}>
           <div className="hidden sm:hidden md:hidden lg:flex xl:flex flex-col lg:basis-[30%] lg:flex-none gap-3 items-center justify-center">
             <ul className="list-none list-inside text-[17px] ps-6 custom-list cursor-pointer font-serif mt-2 ">
               {items.slice(0, 7).map((item, index) => (
