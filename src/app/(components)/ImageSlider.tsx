@@ -47,6 +47,7 @@ const ImageSlider = () => {
   const slides = [
     {
       image: "/images/gallery/nabh3.png",
+      mobileImage: "/images/gallery/nabh-phone.png",
       title: "",
       subtitle: "",
       cta: ""
@@ -90,11 +91,16 @@ const ImageSlider = () => {
           <div key={index} className="relative h-[85vh] w-full">
             {/* Image */}
             <div className="absolute inset-0">
-              <img
-                className="w-full h-full object-cover"
-                src={slide.image}
-                alt={slide.title}
-              />
+              <picture>
+                {"mobileImage" in slide && slide.mobileImage && (
+                  <source media="(max-width: 767px)" srcSet={slide.mobileImage} />
+                )}
+                <img
+                  className="w-full h-full object-cover"
+                  src={slide.image}
+                  alt={slide.title}
+                />
+              </picture>
               <div className="absolute inset-0 bg-gradient-to-r from-black/70 via-black/50 to-black/70"></div>
               <div className="absolute inset-0 bg-gradient-to-t from-black/60 via-transparent to-black/30"></div>
             </div>
