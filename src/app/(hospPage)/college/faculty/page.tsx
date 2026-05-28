@@ -93,6 +93,21 @@ export default function Teachers() {
     });
   };
 
+  const groupedTeachers = teachers.reduce<
+    Array<{ department: string; faculty: TeacherListItem[] }>
+  >((groups, teacher) => {
+    const department = getDepartmentName(teacher.department);
+    const existingGroup = groups.find((group) => group.department === department);
+
+    if (existingGroup) {
+      existingGroup.faculty.push(teacher);
+    } else {
+      groups.push({ department, faculty: [teacher] });
+    }
+
+    return groups;
+  }, []);
+
   return (
     <section className="min-h-screen bg-gradient-to-br from-slate-50 via-white to-slate-50 px-4 py-16 md:px-6 md:py-20">
       <div className="mx-auto max-w-7xl">
@@ -127,61 +142,71 @@ export default function Teachers() {
         )}
 
         {!isLoadingList && !listError && teachers.length > 0 && (
-          <div className="grid grid-cols-1 gap-8 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4">
-            {teachers.map((teacher) => (
-              <div
-                key={teacher._id}
-                className="group relative overflow-hidden rounded-2xl bg-white shadow-lg ring-1 ring-gray-900/5 transition-all duration-300 hover:-translate-y-2 hover:shadow-2xl hover:ring-red-500/20"
-              >
-                <div className="relative h-72 overflow-hidden bg-gradient-to-br from-gray-100 to-gray-200">
-                  {teacher.teacherPhoto?.asset?.url ? (
-                    <img
-                      src={teacher.teacherPhoto.asset.url}
-                      alt={getPersonName(teacher.fullName)}
-                      className="h-full w-full object-cover transition-transform duration-500 group-hover:scale-110"
-                    />
-                  ) : (
-                    <div className="flex h-full items-center justify-center bg-gradient-to-br from-red-600 to-red-700">
-                      <span className="text-6xl font-bold text-white drop-shadow-lg">
-                        {getPersonName(teacher.fullName).charAt(0)}
-                      </span>
-                    </div>
-                  )}
-                  <div className="absolute inset-0 bg-gradient-to-t from-black/60 via-transparent to-transparent opacity-0 transition-opacity duration-300 group-hover:opacity-100"></div>
-                  <div className="absolute bottom-4 left-4 right-4">
-                    <span className="inline-block rounded-full bg-white/95 px-4 py-1.5 text-xs font-bold text-gray-800 shadow-lg backdrop-blur-sm">
-                      {getDepartmentName(teacher.department)}
-                    </span>
-                  </div>
+          <div className="space-y-8">
+            {groupedTeachers.map((group) => (
+              <div key={group.department} className="space-y-4">
+                <div className="rounded-xl border border-red-200 bg-red-50 px-4 py-2.5">
+                  <p className="text-sm font-bold uppercase tracking-wide text-red-700">
+                    {group.department}
+                  </p>
                 </div>
+                <div className="grid grid-cols-1 gap-8 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4">
+                  {group.faculty.map((teacher) => (
+                    <div
+                      key={teacher._id}
+                      className="group relative overflow-hidden rounded-2xl bg-white shadow-lg ring-1 ring-gray-900/5 transition-all duration-300 hover:-translate-y-2 hover:shadow-2xl hover:ring-red-500/20"
+                    >
+                      <div className="relative h-72 overflow-hidden bg-gradient-to-br from-gray-100 to-gray-200">
+                        {teacher.teacherPhoto?.asset?.url ? (
+                          <img
+                            src={teacher.teacherPhoto.asset.url}
+                            alt={getPersonName(teacher.fullName)}
+                            className="h-full w-full object-cover transition-transform duration-500 group-hover:scale-110"
+                          />
+                        ) : (
+                          <div className="flex h-full items-center justify-center bg-gradient-to-br from-red-600 to-red-700">
+                            <span className="text-6xl font-bold text-white drop-shadow-lg">
+                              {getPersonName(teacher.fullName).charAt(0)}
+                            </span>
+                          </div>
+                        )}
+                        <div className="absolute inset-0 bg-gradient-to-t from-black/60 via-transparent to-transparent opacity-0 transition-opacity duration-300 group-hover:opacity-100"></div>
+                        <div className="absolute bottom-4 left-4 right-4">
+                          <span className="inline-block rounded-full bg-white/95 px-4 py-1.5 text-xs font-bold text-gray-800 shadow-lg backdrop-blur-sm">
+                            {getDepartmentName(teacher.department)}
+                          </span>
+                        </div>
+                      </div>
 
-                <div className="p-6">
-                  <h3 className="mb-4 line-clamp-2 min-h-[3.5rem] text-xl font-bold text-gray-900">
-                    {getPersonName(teacher.fullName)}
-                  </h3>
-                  <button
-                    onClick={() => openTeacher(teacher._id)}
-                    disabled={loadingTeacherId === teacher._id}
-                    className="group/btn relative w-full overflow-hidden rounded-xl bg-gradient-to-r from-red-600 to-red-700 px-6 py-3 font-semibold text-white shadow-lg transition-all hover:shadow-xl disabled:opacity-50"
-                  >
-                    <span className="relative z-10">
-                      {loadingTeacherId === teacher._id ? (
-                        <span className="flex items-center justify-center gap-2">
-                          <span className="h-4 w-4 animate-spin rounded-full border-2 border-white border-t-transparent"></span>
-                          Loading...
-                        </span>
-                      ) : (
-                        "View Profile →"
-                      )}
-                    </span>
-                    <div className="absolute inset-0 -translate-x-full bg-gradient-to-r from-red-700 to-red-800 transition-transform duration-300 group-hover/btn:translate-x-0"></div>
-                  </button>
+                      <div className="p-6">
+                        <h3 className="mb-4 line-clamp-2 min-h-[3.5rem] text-xl font-bold text-gray-900">
+                          {getPersonName(teacher.fullName)}
+                        </h3>
+                        <button
+                          onClick={() => openTeacher(teacher._id)}
+                          disabled={loadingTeacherId === teacher._id}
+                          className="group/btn relative w-full overflow-hidden rounded-xl bg-gradient-to-r from-red-600 to-red-700 px-6 py-3 font-semibold text-white shadow-lg transition-all hover:shadow-xl disabled:opacity-50"
+                        >
+                          <span className="relative z-10">
+                            {loadingTeacherId === teacher._id ? (
+                              <span className="flex items-center justify-center gap-2">
+                                <span className="h-4 w-4 animate-spin rounded-full border-2 border-white border-t-transparent"></span>
+                                Loading...
+                              </span>
+                            ) : (
+                              "View Profile →"
+                            )}
+                          </span>
+                          <div className="absolute inset-0 -translate-x-full bg-gradient-to-r from-red-700 to-red-800 transition-transform duration-300 group-hover/btn:translate-x-0"></div>
+                        </button>
+                      </div>
+                    </div>
+                  ))}
                 </div>
               </div>
             ))}
           </div>
         )}
-
         {isModalOpen && selectedTeacher && (
           <div
             className="fixed inset-0 z-[1000] flex items-center justify-center bg-black/70 p-4 backdrop-blur-md"

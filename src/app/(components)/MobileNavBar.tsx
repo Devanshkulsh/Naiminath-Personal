@@ -66,6 +66,7 @@ const MobileNavBar = ({
     { label: "Ncism", path: "/ncism" },
     { label: "Blog", path: "/blog" },
     { label: "Facilities", path: "/facilities" },
+    { label: "Achievements", path: "/achievements" },
     { label: "Contact", path: "/contactus" },
     { label: "Digital Garden", path: "/digitalgarden" },
     { label: "Faculty", path: "/faculty" },

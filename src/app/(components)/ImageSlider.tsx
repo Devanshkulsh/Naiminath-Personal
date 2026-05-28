@@ -46,6 +46,12 @@ const ImageSlider = () => {
 
   const slides = [
     {
+      image: "/images/gallery/nabh3.png",
+      title: "",
+      subtitle: "",
+      cta: ""
+    },
+    {
       image: "/images/gallery/gallery1-min.jpg",
       title: "Premier Ayurvedic College",
       subtitle: "Welcome to our esteemed institution dedicated to preserving and advancing the ancient science of Ayurveda. Our college provides comprehensive education in traditional medicine, combining classical texts with modern research methodologies to train the next generation of Ayurvedic practitioners.",
@@ -96,20 +102,26 @@ const ImageSlider = () => {
             {/* Content */}
             <div className="absolute inset-0 flex items-center justify-center text-center">
               <div className="max-w-5xl px-6">
-                <h1 className="text-3xl md:text-5xl lg:text-6xl font-bold text-white mb-6 leading-tight roboto-serif-heading">
-                  {slide.title}
-                </h1>
-                <p className="text-base md:text-lg lg:text-xl text-white/95 mb-8 max-w-4xl mx-auto leading-relaxed font-light">
-                  {slide.subtitle}
-                </p>
-                <button 
-                  className="bg-red-600 hover:bg-black text-white px-10 py-4 font-bold transition-all duration-300 transform hover:scale-105 shadow-lg hover:shadow-xl"
-                  style={{ backgroundColor: '#de0000' }}
-                  onMouseEnter={(e) => (e.target as HTMLButtonElement).style.backgroundColor = '#0d1317'}
-                  onMouseLeave={(e) => (e.target as HTMLButtonElement).style.backgroundColor = '#de0000'}
-                >
-                  {slide.cta}
-                </button>
+                {slide.title && (
+                  <h1 className="text-3xl md:text-5xl lg:text-6xl font-bold text-white mb-6 leading-tight roboto-serif-heading">
+                    {slide.title}
+                  </h1>
+                )}
+                {slide.subtitle && (
+                  <p className="text-base md:text-lg lg:text-xl text-white/95 mb-8 max-w-4xl mx-auto leading-relaxed font-light">
+                    {slide.subtitle}
+                  </p>
+                )}
+                {slide.cta && (
+                  <button 
+                    className="bg-red-600 hover:bg-black text-white px-10 py-4 font-bold transition-all duration-300 transform hover:scale-105 shadow-lg hover:shadow-xl"
+                    style={{ backgroundColor: '#de0000' }}
+                    onMouseEnter={(e) => (e.target as HTMLButtonElement).style.backgroundColor = '#0d1317'}
+                    onMouseLeave={(e) => (e.target as HTMLButtonElement).style.backgroundColor = '#de0000'}
+                  >
+                    {slide.cta}
+                  </button>
+                )}
               </div>
             </div>
           </div>

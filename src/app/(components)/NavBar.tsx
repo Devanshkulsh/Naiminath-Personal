@@ -323,6 +323,19 @@ const NavBar = () => {
           </li>
           <li>
             <Link
+              href="/achievements"
+              prefetch
+              className={` p-1.5  hover:text-gray-600 border-[#3b3b3b] ${pathname === "/achievements"
+                ? "border-[2px]"
+                : "border-[0px]"
+                } transition-opacity duration-300 ease-in-out`}
+              scroll={false}
+            >
+              Achievements
+            </Link>
+          </li>
+          <li>
+            <Link
               href="/contactus"
               prefetch
               className={` p-1.5  hover:text-gray-600 border-[#3b3b3b] ${pathname === "/contactus"
