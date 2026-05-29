@@ -92,7 +92,7 @@ import React from 'react'
         <div className="testimonial-content">
           <div className="testimonial-rating"></div>
           <p>
-Kati Basti treatment at Naiminath Ayurveda was nothing short of remarkable. From the moment I arrived, I was greeted with warmth and professionalism, putting me at ease instantly. The therapists' expertise and dedication to their craft were evident from the start, instilling confidence in the treatment process.          </p>
+Kati Basti treatment at Naiminath Ayurveda was nothing short of remarkable. From the moment I arrived, I was greeted with warmth and professionalism, putting me at ease instantly. The therapists&apos; expertise and dedication to their craft were evident from the start, instilling confidence in the treatment process.          </p>
           <footer>— Yasika</footer>
         </div>
       </blockquote>

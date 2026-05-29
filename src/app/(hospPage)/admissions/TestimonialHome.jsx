@@ -128,7 +128,7 @@ const TestimonialHome = () => {
           {/* <hr className="hr" /> */}
           <div className="testimonials">
             {testimonials.map((test, index) => (
-              <div className="testimonial">{test.divtoshow}</div>
+              <div className="testimonial" key={index}>{test.divtoshow}</div>
             ))}
           </div>
           <button className="btns hero-btn rest-btns">

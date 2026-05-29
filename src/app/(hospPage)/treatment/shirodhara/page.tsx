@@ -142,7 +142,7 @@ const SirodharaPage = () => {
           <div className="testimonial-content">
             <div className="testimonial-rating"></div>
             <p>
-             After the treatment, I emerged feeling rejuvenated, with a newfound clarity of mind and a lightness in my spirit that I hadn't experienced in ages. The effects of Shirodhara seemed to linger long after the session ended, leaving me with a renewed sense of vitality and well-being.
+             After the treatment, I emerged feeling rejuvenated, with a newfound clarity of mind and a lightness in my spirit that I hadn&apos;t experienced in ages. The effects of Shirodhara seemed to linger long after the session ended, leaving me with a renewed sense of vitality and well-being.
             </p>
             <footer>— Shelja</footer>
           </div>
