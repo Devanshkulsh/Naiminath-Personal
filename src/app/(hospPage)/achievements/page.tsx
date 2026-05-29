@@ -6,57 +6,57 @@ import { useGlobalContext } from "@/app/context/store";
 
 const achievements = [
   {
-    title: "Academic Excellence Recognition",
+    title: "BW Healthcare Summit 2024 Award Nomination",
     description:
-      "A proud recognition of academic commitment and consistent performance within the institution.",
+      "Naiminath Ayurvedic Medical College, Hospital and Research Centre, Agra was nominated for the Business World Healthcare Summit 2024 Award in the category of Institutional Excellence in Healthcare Education and Training. This recognition reflects the institution’s commitment to delivering quality Ayurvedic education, clinical training, and healthcare excellence.",
     image: "/achievements/achievement1.jpg",
   },
   {
-    title: "Student Achievement Ceremony",
+    title: "BW Healthcare Excellence Award 2024",
     description:
-      "Celebrating students whose dedication, discipline, and learning spirit brought honour to NAMC.",
+      "Naiminath Ayurvedic Medical College, Hospital and Research Centre, Agra was honored with the prestigious BW Healthcare Excellence Award for Institutional Excellence in Healthcare Education and Training. This achievement recognizes the institution’s dedication to academic excellence, quality healthcare education, and the continuous development of future healthcare professionals.",
     image: "/achievements/achievement2.jpg",
   },
   {
-    title: "Institutional Honour",
+    title: "Top 10 Ayurvedic Colleges in India 2024",
     description:
-      "A meaningful milestone that reflects the college's continued growth in Ayurveda education.",
+      "Naiminath Ayurvedic Medical College, Hospital and Research Centre, Agra was recognized by Higher Education Review as one of the Top 10 Ayurvedic Colleges in India for 2024. This prestigious recognition reflects the institution’s commitment to academic excellence, quality education, and the advancement of Ayurvedic healthcare and research.",
     image: "/achievements/achievement7.jpg",
   },
   {
-    title: "Award of Distinction",
+    title: "Institutional Excellence in Healthcare Education & Training",
     description:
-      "Recognition for outstanding contribution, excellence, and a culture of continual improvement.",
+      "Naiminath Ayurvedic Medical College, Hospital and Research Centre, Agra received the BW Healthcare Excellence Award 2024 for Institutional Excellence in Healthcare Education and Training. This prestigious recognition acknowledges the institution’s outstanding contribution to quality healthcare education, professional training, and its commitment to fostering excellence in Ayurvedic medical learning and practice.",
     image: "/achievements/achievement3.jpg",
   },
   {
-    title: "Merit Recognition",
+    title: "CCRAS-SPARK Research Program Selection",
     description:
-      "Honouring meritorious work and the sincere efforts behind every achievement.",
+      "Siddharth Sharma (Batch 2022–23) was selected for the Studentship Program for Ayurveda Research (KEN CCRAS-SPARK), a prestigious initiative promoting research excellence in Ayurveda. Guided by Prof. Dr. Girish M. Shende and the Research and Innovation Cell, this achievement highlights the institution’s strong focus on academic research, innovation, and student success.",
     image: "/achievements/achievement5.jpg",
   },
   {
-    title: "Proud Moment at NAMC",
+    title: "India's Top 10 Ayurveda Colleges Recognition",
     description:
-      "A memorable achievement that adds to the institution's journey of learning and service.",
+      "Naiminath Ayurvedic Medical College, Hospital and Research Centre, Agra was recognized among India’s Top 10 Ayurvedic Colleges for 2024 by The Academic Insights. This distinguished honor acknowledges the institution’s significant contributions to Ayurvedic education, academic excellence, and its commitment to shaping the future of healthcare through quality learning and research.",
     image: "/achievements/achievement6.jpg",
   },
   {
-    title: "Excellence in Ayurveda Education",
+    title: "AIIA Pre-Incubation Training Selection",
     description:
-      "Recognising the pursuit of quality education, clinical exposure, and professional values.",
+      "A student team from Naiminath Ayurvedic Medical College earned the opportunity to receive Pre-Incubation Training at AIIA, New Delhi, marking an important milestone in fostering innovation and entrepreneurship in Ayurveda. Led by Chhayashree B.M. with team member Lata Kumari (Batch 2022–23), the achievement reflects the institution’s commitment to nurturing future leaders and advancing medical innovation.",
     image: "/achievements/achievement4.jpg",
   },
   {
-    title: "Achievement Showcase",
+    title: "NABH AYUSH Entry-Level Hospital Certification",
     description:
-      "A glimpse of the recognitions earned through teamwork, focus, and institutional dedication.",
+      "Naiminath Ayurvedic Medical College Hospital and Research Centre, Agra achieved NABH AYUSH Entry-Level Hospital Certification from the National Accreditation Board for Hospitals & Healthcare Providers (NABH). This certification reflects the institution’s adherence to recognized quality standards in patient care, healthcare services, and hospital management, reinforcing its commitment to excellence in Ayurvedic healthcare delivery.",
     image: "/achievements/achievement9.jpg",
   },
   {
-    title: "Milestone Recognition",
+    title: "NABH Certified Ayurvedic Healthcare Services",
     description:
-      "Marking an important milestone in the continuing progress of Naiminath Ayurveda.",
+      "Naiminath Ayurvedic Medical College Hospital and Research Centre, Agra received NABH AYUSH Entry-Level Hospital Certification for its comprehensive range of Ayurvedic healthcare services, including Panchakarma, Kayachikitsa, Shalakya Tantra, Shalya Tantra, Kaumarbhritya, Damshtra Chikitsa, Swasthavritta, Prasuti Evam Stri Roga, and Yoga Services. This recognition demonstrates the institution’s commitment to maintaining high standards of quality, patient safety, and excellence in Ayurvedic healthcare delivery.",
     image: "/achievements/achievement10.jpg",
   },
 ];
