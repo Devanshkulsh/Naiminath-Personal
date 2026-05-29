@@ -101,8 +101,12 @@ const ImageSlider = () => {
                   alt={slide.title}
                 />
               </picture>
-              <div className="absolute inset-0 bg-gradient-to-r from-black/70 via-black/50 to-black/70"></div>
-              <div className="absolute inset-0 bg-gradient-to-t from-black/60 via-transparent to-black/30"></div>
+              {index !== 0 && (
+                <>
+                  <div className="absolute inset-0 bg-gradient-to-r from-black/70 via-black/50 to-black/70"></div>
+                  <div className="absolute inset-0 bg-gradient-to-t from-black/60 via-transparent to-black/30"></div>
+                </>
+              )}
             </div>
             
             {/* Content */}
