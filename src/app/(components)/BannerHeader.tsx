@@ -81,10 +81,13 @@ const BannerHeader = () => {
 
       {isMobile && (<div className=" flex flex-row justify-between w-full my-5">
 
-        <div className="w-[200px] h-[50px] bg-[url('/images/ayurvedalogo.png')] bg-no-repeat  bg-contain ml-5 cursor-pointer"
-          onClick={
-            () => { rounter.push('/') }
-          }></div>
+        <div className="ml-5 flex items-center gap-2">
+          <div className="w-[200px] h-[50px] bg-[url('/images/ayurvedalogo.png')] bg-no-repeat  bg-contain cursor-pointer"
+            onClick={
+              () => { rounter.push('/') }
+            }></div>
+          <div className="w-[90px] h-[50px] bg-[url('/images/NABH-Logo-bg.png')] bg-no-repeat bg-contain bg-center"></div>
+        </div>
 
         <div className=" absolute z-20 right-0">
 

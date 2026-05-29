@@ -12,108 +12,92 @@ import { SizeProp } from "@fortawesome/fontawesome-svg-core";
 import { useRouter } from "next/navigation";
 import Link from "next/link";
 
-
-// const Header = ({ imageSlider }: { imageSlider: boolean }) => {
-//   const customSize: SizeProp = "lg";
-//   const rounter= useRouter();
-//   return (
-//     <div
-//       className={`flex justify-center items-center w-full h-fit ${
-//         imageSlider ? "bg-transparent" : "bg-green-500"
-//       }  font-medium bg-orange-400`}
-//     >
-//       <div className="flex flex-col  w-full justify-center">
-//         <div className="flex border-[#748182] bg-[#ded636] py-3 px-[60px]">
-//           <div className="basis-[70%]  flex gap-4 justify-start items-center text-[11px] md:text-[14px] text-stone-700">
-//             <FontAwesomeIcon icon={faStopwatch} color="#a33a2e" size={customSize}/>
-//             <p>Open Hours-9am to 4pm</p>
-//             <div className="h-full border border-[#a33a2e]"></div>
-//             <FontAwesomeIcon icon={faMailBulk} color="#a33a2e" size={customSize}/>
-//             <p>info@naiminathayurveda.org</p>
-//           </div>
-//           <div className="flex basis-[30%] justify-end items-center text-[11px] md:text-[14px] font-semibold"
-//           onClick={()=>{
-//              rounter.push('/doc/perm_letter.pdf')
-//           }}>
-//             <FontAwesomeIcon icon={faPhone} color="#a33a2e" size={customSize}/>
-//             <p>+91-8193896320</p>
-//             <div className="h-full border mx-3 border-[#a33a2e]"></div>
-//             <p>Permission Letter</p>
-//           </div>
-//         </div>
-//         <div className=" flex px-[60px] w-full h-fit justify-between items-center
-//          bg-white py-5 border-b-[1px] border-r-slate-300">
-//           <div className="w-[200px] h-[50px] mt-1">
-//             <div className="w-full h-full bg-[url('/images/ayurvedalogo.png')] bg-no-repeat  bg-contain"></div>
-//           </div>
-//           <NavBar />
-//           <div className="flex h-fit justify-start items-center bg-[#fff500] rounded-lg px-4 py-3 gap-2 text-[14px] font-semibold">
-//             <FontAwesomeIcon icon={faBook} color="#a33a2e" className="" size={customSize} />
-//             <p className=" ">Admission Open</p>
-//           </div>
-//         </div>
-//       </div>
-//     </div>
-//   );
-// };
-
 const Header = ({ imageSlider }: { imageSlider: boolean }) => {
   const customSize: SizeProp = "lg";
-  const rounter = useRouter();
+  const router = useRouter();
+
   return (
     <div
-      className={`flex md:flex-row flex-col justify-center items-center w-full h-fit ${imageSlider ? "bg-transparent" : "bg-green-500"
-        }  font-medium bg-orange-400`}
+      className={`flex flex-col w-full h-fit ${
+        imageSlider ? "bg-transparent" : "bg-green-500"
+      } font-medium bg-orange-400`}
     >
-      <div className="flex flex-col  w-full justify-center">
-        <div className="flex md:flex-row flex-col border-[#748182] bg-[#ded636] py-3 px-[60px]">
-          <div className="basis-[40%]  flex md:flex-row flex-col gap-1 md:gap-4 justify-start items-center text-[13px] md:text-[14px] text-stone-700">
-            <FontAwesomeIcon icon={faStopwatch} color="#a33a2e" size={customSize} />
-            <p>Open Hours-9am to 4pm</p>
-            <div className="h-full border border-[#a33a2e]"></div>
-            <FontAwesomeIcon icon={faMailBulk} color="#a33a2e" size={customSize} />
-            <a href={`mailto:info@naiminathayurveda.org`}>info@naiminathayurveda.org</a>
+      <div className="flex flex-col w-full justify-center">
+        
+        {/* --- TOP BAR START --- */}
+        <div className="flex flex-col md:flex-row justify-between items-center border-[#748182] bg-[#ded636] py-3 px-4 md:px-12 gap-3 md:gap-0">
+          
+          {/* Left Side: Timing & Email */}
+          <div className="flex flex-col sm:flex-row gap-2 sm:gap-4 justify-start items-center text-center text-[13px] md:text-[14px] text-stone-700 w-full md:w-auto">
+            <div className="flex items-center gap-1.5">
+              <FontAwesomeIcon icon={faStopwatch} color="#a33a2e" size={customSize} />
+              <span>Open Hours-9am to 4pm</span>
+            </div>
+            
+            <div className="hidden sm:block h-4 border-l border-[#a33a2e]"></div>
+            
+            <div className="flex items-center gap-1.5">
+              <FontAwesomeIcon icon={faMailBulk} color="#a33a2e" size={customSize} />
+              <a href="mailto:info@naiminathayurveda.org" className="hover:underline">
+                info@naiminathayurveda.org
+              </a>
+            </div>
           </div>
 
+          {/* Right Side: Enquiry, Phone, Permission & Button */}
+          <div className="flex flex-wrap justify-center md:justify-end items-center gap-3 text-[12px] md:text-[14px] font-semibold w-full md:w-auto">
+            
+            <div className="flex items-center gap-1.5">
+              <span className="font-bold text-red-900">Admission enquiry :-</span>
+              <FontAwesomeIcon icon={faPhone} color="#a33a2e" size={customSize} />
+              <a href="tel:+91-9528024473" className="hover:underline">
+                +91-9528024473
+              </a>
+            </div>
 
-          <div className="flex md:flex-row flex-col basis-[60%] gap-2 md:mt-0 mt-4 justify-end items-center text-[11px] md:text-[14px] font-semibold"
-          >
-            <span className="font-bold text-red-900 text-[14px]">
+            <div className="hidden sm:block h-4 border-l border-[#a33a2e]"></div>
+            
+            <Link href="/doc/Yearly_Permission.pdf" className="hover:underline">
+              Permission Letter
+            </Link>
+            
+            <div className="hidden sm:block h-4 border-l border-[#a33a2e]"></div>
 
-              Admission enquiry :-
-            </span>
-
-            <FontAwesomeIcon icon={faPhone} color="#a33a2e" size={customSize} />
-
-            <a href={`tel: +91-9528024473`}>
-              +91-9528024473
+            {/* Admission Button */}
+            <a 
+              href="https://bams-admission.vercel.app/" 
+              target="_blank" 
+              rel="noopener noreferrer"
+              className="flex items-center justify-center whitespace-nowrap rounded-md border border-[#7a0f0f] bg-[#de0000] px-3 py-1.5 gap-1.5 text-[11px] md:text-[12px] font-bold text-white shadow-[0_2px_8px_rgba(0,0,0,0.25)] transition duration-200 hover:bg-[#b00000]"
+            >
+              <FontAwesomeIcon icon={faBook} color="#fff500" className="text-[11px] md:text-[12px]" />
+              <span className="leading-none">Admission Open</span>
             </a>
-
-
-            <div className="h-full border mx-3 border-[#a33a2e]"></div>
-            <Link href={"/doc/Yearly_Permission.pdf"}>Permission Letter</Link>
           </div>
-
 
         </div>
-        <div className=" flex md:flex-row flex-col px-[60px] w-full h-fit justify-between items-center
-         bg-white py-5 border-b-[1px] border-r-slate-300">
-          <div className="w-[240px] h-[50px] mt-1">
-            <div className="w-full h-full bg-[url('/images/ayurvedalogo.png')] bg-no-repeat  bg-contain cursor-pointer" onClick={
-              () => { rounter.push('/') }
-            }></div>
+        {/* --- TOP BAR END --- */}
+
+        {/* --- MAIN NAVBAR START --- */}
+        <div className="flex flex-col md:flex-row px-4 md:px-12 w-full h-fit justify-between items-center bg-white py-4 gap-4 md:gap-0 border-b border-slate-300">
+          <div className="flex items-center gap-3">
+            <div className="w-[240px] h-[50px]">
+              <div 
+                className="w-full h-full bg-[url('/images/ayurvedalogo.png')] bg-no-repeat bg-contain cursor-pointer" 
+                onClick={() => router.push('/')}
+              ></div>
+            </div>
+            <div className="w-[110px] h-[58px]">
+              <div className="w-full h-full bg-[url('/images/NABH-Logo.png')] bg-no-repeat bg-contain bg-center"></div>
+            </div>
           </div>
           <NavBar />
-          <div className="flex md:flex-row flex-col h-fit justify-start items-center bg-[#fff500] rounded-lg px-4 py-3 gap-2 text-[14px] font-semibold">
-            <FontAwesomeIcon icon={faBook} color="#a33a2e" className="" size={customSize} />
-            <a href="https://bams-admission.vercel.app/"> <p className=" ">Admission Open</p></a>
-          </div>
         </div>
-      </div>
+        {/* --- MAIN NAVBAR END --- */}
 
+      </div>
     </div>
   );
 };
-
 
 export default Header;
