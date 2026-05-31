@@ -20,6 +20,9 @@ export default function Teachers() {
   const [listError, setListError] = useState<string | null>(null);
   const [activeDepartment, setActiveDepartment] = useState("All");
   const [currentPage, setCurrentPage] = useState(1);
+  const [teacherDetailsById, setTeacherDetailsById] = useState<
+    Record<string, TeacherDetail>
+  >({});
   const departmentTabRefs = useRef<Record<string, HTMLButtonElement | null>>({});
 
   useEffect(() => {
@@ -96,27 +99,223 @@ export default function Teachers() {
     });
   };
 
+  const professionalYearOrder = [
+    "1st Professional Year",
+    "2nd Professional Year",
+    "3rd & Final Professional Year",
+    "Other Departments",
+  ];
+
+  const curriculumOrder = [
+    {
+      year: "1st Professional Year",
+      department: "Padartha Vigyan",
+      aliases: ["padartha"],
+    },
+    {
+      year: "1st Professional Year",
+      department: "Samskritam evam Ayurved Ithihas",
+      aliases: ["samskrit", "sanskrit", "ithihas", "itihas"],
+    },
+    {
+      year: "1st Professional Year",
+      department: "Kriya Sharira",
+      aliases: ["kriya"],
+    },
+    {
+      year: "1st Professional Year",
+      department: "Rachana Sharira",
+      aliases: ["rachana"],
+    },
+    {
+      year: "1st Professional Year",
+      department: "Samhita Adhyayan - 1",
+      aliases: ["samhita", "siddhanta"],
+    },
+    {
+      year: "2nd Professional Year",
+      department: "Dravyaguna Vigyan",
+      aliases: ["dravyaguna"],
+    },
+    {
+      year: "2nd Professional Year",
+      department: "Rasashastra evam Bhaishajya Kalpana",
+      aliases: ["rasashastra", "bhaishajya", "rasa shastra"],
+    },
+    {
+      year: "2nd Professional Year",
+      department: "Roga Nidana evam Vikriti Vigyan",
+      aliases: ["roga", "nidana", "vikriti"],
+    },
+    {
+      year: "2nd Professional Year",
+      department: "Agada Tantra evam Vidhi Vaidyaka",
+      aliases: ["agad", "agada", "vidhi", "vaidya"],
+    },
+    {
+      year: "2nd Professional Year",
+      department: "Swasthavritta evam Yoga",
+      aliases: ["swasthavritta", "swastha", "yoga"],
+    },
+    {
+      year: "2nd Professional Year",
+      department: "Samhita Adhyayan - 2",
+      aliases: ["samhita", "siddhanta"],
+    },
+    {
+      year: "3rd & Final Professional Year",
+      department: "Kayachikitsa",
+      aliases: ["kayachikitsa", "kaya chikitsa"],
+    },
+    {
+      year: "3rd & Final Professional Year",
+      department: "Shalya Tantra",
+      aliases: ["shalya"],
+    },
+    {
+      year: "3rd & Final Professional Year",
+      department: "Shalakya Tantra",
+      aliases: ["shalakya"],
+    },
+    {
+      year: "3rd & Final Professional Year",
+      department: "Prasuti Tantra evam Stree Roga",
+      aliases: ["prasuti", "stree", "stri"],
+    },
+    {
+      year: "3rd & Final Professional Year",
+      department: "Kaumarbhritya",
+      aliases: ["kaumar", "bal roga", "bala roga", "pediatric"],
+    },
+    {
+      year: "3rd & Final Professional Year",
+      department: "Research Methodology and Medical Statistics",
+      aliases: ["research", "statistics"],
+    },
+    {
+      year: "3rd & Final Professional Year",
+      department: "Samhita Adhyayan - 3",
+      aliases: ["samhita", "siddhanta"],
+    },
+  ];
+
+  const normalizeText = (value: string) => value.toLowerCase().replace(/\s+/g, " ");
+
+  const getCurriculumGroup = (department: string) => {
+    const normalizedDepartment = normalizeText(department);
+    const match = curriculumOrder.find((item) =>
+      item.aliases.some((alias) => normalizedDepartment.includes(alias))
+    );
+
+    return (
+      match || {
+        year: "Other Departments",
+        department,
+        aliases: [],
+      }
+    );
+  };
+
+  const getTeacherDesignation = (teacher: TeacherListItem) => {
+    const details = teacherDetailsById[teacher._id];
+    const naiminathExperience = details?.experience?.find((exp) =>
+      normalizeText(exp.collegeName || "").includes("naiminath ayurvedic")
+    );
+    const latestExperience = details?.experience?.[0];
+
+    return (
+      naiminathExperience?.designation ||
+      latestExperience?.designation ||
+      details?.natureOfPresentAppointment ||
+      "-"
+    );
+  };
+
+  const getDesignationRank = (teacher: TeacherListItem) => {
+    const designation = normalizeText(getTeacherDesignation(teacher));
+
+    if (designation.includes("associate professor")) return 2;
+    if (designation.includes("assistant professor") || designation.includes("assistant")) return 3;
+    if (designation.includes("professor")) return 1;
+
+    return 4;
+  };
+
+  const sortFaculty = (faculty: TeacherListItem[]) =>
+    [...faculty].sort((first, second) => {
+      const rankDifference =
+        getDesignationRank(first) - getDesignationRank(second);
+
+      if (rankDifference !== 0) return rankDifference;
+
+      return getPersonName(first.fullName).localeCompare(
+        getPersonName(second.fullName)
+      );
+    });
+
   const groupedTeachers = teachers.reduce<
-    Array<{ department: string; faculty: TeacherListItem[] }>
+    Array<{ professionalYear: string; department: string; faculty: TeacherListItem[] }>
   >((groups, teacher) => {
-    const department = getDepartmentName(teacher.department);
-    const existingGroup = groups.find((group) => group.department === department);
+    const rawDepartment = getDepartmentName(teacher.department);
+    const curriculumGroup = getCurriculumGroup(rawDepartment);
+    const existingGroup = groups.find(
+      (group) =>
+        group.professionalYear === curriculumGroup.year &&
+        group.department === curriculumGroup.department
+    );
 
     if (existingGroup) {
       existingGroup.faculty.push(teacher);
     } else {
-      groups.push({ department, faculty: [teacher] });
+      groups.push({
+        professionalYear: curriculumGroup.year,
+        department: curriculumGroup.department,
+        faculty: [teacher],
+      });
     }
 
     return groups;
-  }, []);
+  }, [])
+    .map((group) => ({
+      ...group,
+      faculty: sortFaculty(group.faculty),
+    }))
+    .sort((first, second) => {
+      const yearDifference =
+        professionalYearOrder.indexOf(first.professionalYear) -
+        professionalYearOrder.indexOf(second.professionalYear);
 
-  const departmentTabs = ["All", ...groupedTeachers.map((group) => group.department)];
+      if (yearDifference !== 0) return yearDifference;
+
+      const firstDepartmentIndex = curriculumOrder.findIndex(
+        (item) =>
+          item.year === first.professionalYear &&
+          item.department === first.department
+      );
+      const secondDepartmentIndex = curriculumOrder.findIndex(
+        (item) =>
+          item.year === second.professionalYear &&
+          item.department === second.department
+      );
+
+      return (
+        (firstDepartmentIndex === -1 ? Number.MAX_SAFE_INTEGER : firstDepartmentIndex) -
+        (secondDepartmentIndex === -1 ? Number.MAX_SAFE_INTEGER : secondDepartmentIndex)
+      );
+    });
+
+  const departmentTabs = [
+    "All",
+    ...professionalYearOrder.filter((year) =>
+      groupedTeachers.some((group) => group.professionalYear === year)
+    ),
+  ];
   const visibleTeachers =
     activeDepartment === "All"
       ? groupedTeachers.flatMap((group) => group.faculty)
-      : groupedTeachers.find((group) => group.department === activeDepartment)
-          ?.faculty || [];
+      : groupedTeachers
+          .filter((group) => group.professionalYear === activeDepartment)
+          .flatMap((group) => group.faculty);
   const teachersPerPage = 10;
   const totalPages = Math.max(1, Math.ceil(visibleTeachers.length / teachersPerPage));
   const safeCurrentPage = Math.min(currentPage, totalPages);
@@ -129,6 +328,10 @@ export default function Teachers() {
     paginatedTeachers.map((teacher) => teacher._id)
   );
   const paginatedTeacherGroups = groupedTeachers
+    .filter(
+      (group) =>
+        activeDepartment === "All" || group.professionalYear === activeDepartment
+    )
     .map((group) => ({
       ...group,
       faculty: group.faculty.filter((teacher) =>
@@ -136,6 +339,39 @@ export default function Teachers() {
       ),
     }))
     .filter((group) => group.faculty.length > 0);
+
+  useEffect(() => {
+    let isActive = true;
+    const missingTeachers = teachers.filter(
+      (teacher) => !teacherDetailsById[teacher._id]
+    );
+
+    if (missingTeachers.length === 0) return;
+
+    Promise.all(
+      missingTeachers.map((teacher) =>
+        getTeacherById(teacher._id).catch(() => null)
+      )
+    ).then((teacherDetails) => {
+      if (!isActive) return;
+
+      setTeacherDetailsById((currentDetails) => {
+        const nextDetails = { ...currentDetails };
+
+        teacherDetails.forEach((teacherDetail) => {
+          if (teacherDetail) {
+            nextDetails[teacherDetail._id] = teacherDetail;
+          }
+        });
+
+        return nextDetails;
+      });
+    });
+
+    return () => {
+      isActive = false;
+    };
+  }, [teacherDetailsById, teachers]);
 
   return (
     <section className="min-h-screen overflow-x-hidden bg-gradient-to-br from-slate-50 via-white to-slate-50 px-3 py-10 sm:px-4 sm:py-14 md:px-6 md:py-20">
@@ -174,7 +410,7 @@ export default function Teachers() {
           <div className="grid min-w-0 gap-4 lg:grid-cols-[280px_minmax(0,1fr)] lg:gap-6">
             <aside className="min-w-0 h-fit rounded-2xl border border-gray-200 bg-white p-3 shadow-sm sm:p-4">
               <p className="mb-3 px-2 text-xs font-bold uppercase tracking-[0.18em] text-gray-500">
-                Departments
+                Professional Years
               </p>
               <div className="flex max-w-full gap-2 overflow-x-auto overscroll-x-contain pb-1 lg:flex-col lg:overflow-visible lg:pb-0">
                 {departmentTabs.map((department) => (
@@ -208,7 +444,7 @@ export default function Teachers() {
             <div className="min-w-0 overflow-hidden rounded-2xl border border-gray-200 bg-white shadow-sm">
               <div className="border-b border-gray-200 bg-gray-50 px-4 py-4 sm:px-5">
                 <p className="text-sm font-bold uppercase tracking-wide text-red-700">
-                  {activeDepartment === "All" ? "All Departments" : activeDepartment}
+                  {activeDepartment === "All" ? "All Professional Years" : activeDepartment}
                 </p>
               </div>
               <div className="max-w-full overflow-x-auto overscroll-x-contain">
@@ -219,18 +455,18 @@ export default function Teachers() {
                       <th className="px-5 py-4">Faculty Name</th>
                       <th className="px-5 py-4">Teacher Code</th>
                       <th className="px-5 py-4">Department</th>
+                      <th className="px-5 py-4">Designation</th>
                       <th className="px-5 py-4 text-right">Profile</th>
                     </tr>
                   </thead>
                   <tbody className="divide-y divide-gray-100">
-                    {(activeDepartment === "All"
-                      ? paginatedTeacherGroups.flatMap((group) => [
+                    {paginatedTeacherGroups.flatMap((group) => [
                           <tr key={group.department} className="bg-gray-50">
                             <td
-                              colSpan={5}
+                              colSpan={6}
                               className="px-5 py-3 text-sm font-bold uppercase tracking-wide text-red-700"
                             >
-                              {group.department}
+                              {group.professionalYear} - {group.department}
                             </td>
                           </tr>,
                           ...group.faculty.map((teacher) => (
@@ -262,6 +498,9 @@ export default function Teachers() {
                               <td className="px-5 py-4 text-sm text-gray-700">
                                 {getDepartmentName(teacher.department)}
                               </td>
+                              <td className="px-5 py-4 text-sm font-semibold text-gray-700">
+                                {getTeacherDesignation(teacher)}
+                              </td>
                               <td className="px-5 py-4 text-right">
                                 <button
                                   onClick={() => openTeacher(teacher._id)}
@@ -270,54 +509,12 @@ export default function Teachers() {
                                 >
                                   {loadingTeacherId === teacher._id
                                     ? "Loading..."
-                                    : "View Profile â†’"}
+                                    : "View Profile"}
                                 </button>
                               </td>
                             </tr>
                           )),
-                        ])
-                      : paginatedTeachers.map((teacher) => (
-                      <tr
-                        key={teacher._id}
-                        className="transition-colors hover:bg-red-50/40"
-                      >
-                        <td className="px-5 py-4">
-                          {teacher.teacherPhoto?.asset?.url ? (
-                            <img
-                              src={teacher.teacherPhoto.asset.url}
-                              alt={getPersonName(teacher.fullName)}
-                              className="h-16 w-16 rounded-xl object-cover ring-1 ring-gray-200"
-                            />
-                          ) : (
-                            <div className="flex h-16 w-16 items-center justify-center rounded-xl bg-gradient-to-br from-red-600 to-red-700 text-2xl font-bold text-white">
-                              {getPersonName(teacher.fullName).charAt(0)}
-                            </div>
-                          )}
-                        </td>
-                        <td className="px-5 py-4">
-                          <p className="font-bold text-gray-900">
-                            {getPersonName(teacher.fullName)}
-                          </p>
-                        </td>
-                        <td className="px-5 py-4 text-sm font-semibold text-gray-700">
-                          {teacher.teacherCode || "-"}
-                        </td>
-                        <td className="px-5 py-4 text-sm text-gray-700">
-                          {getDepartmentName(teacher.department)}
-                        </td>
-                        <td className="px-5 py-4 text-right">
-                          <button
-                            onClick={() => openTeacher(teacher._id)}
-                            disabled={loadingTeacherId === teacher._id}
-                            className="rounded-xl bg-gradient-to-r from-red-600 to-red-700 px-5 py-2.5 text-sm font-semibold text-white shadow-lg transition-all hover:shadow-xl disabled:opacity-50"
-                          >
-                            {loadingTeacherId === teacher._id
-                              ? "Loading..."
-                              : "View Profile →"}
-                          </button>
-                        </td>
-                      </tr>
-                    )))}
+                        ])}
                   </tbody>
                 </table>
               </div>
