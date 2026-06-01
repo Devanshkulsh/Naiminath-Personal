@@ -79,15 +79,15 @@ const Header = ({ imageSlider }: { imageSlider: boolean }) => {
         {/* --- TOP BAR END --- */}
 
         {/* --- MAIN NAVBAR START --- */}
-        <div className="flex flex-col md:flex-row px-4 md:px-12 w-full h-fit justify-between items-center bg-white py-4 gap-4 md:gap-0 border-b border-slate-300">
+        <div className="flex flex-col md:flex-row px-4 lg:px-4 xl:px-8 2xl:px-12 w-full h-fit justify-between items-center bg-white py-4 gap-4 md:gap-0 border-b border-slate-300">
           <div className="flex items-center gap-3">
-            <div className="w-[240px] h-[50px]">
+            <div className="w-[191px] h-[40px]">
               <div 
                 className="w-full h-full bg-[url('/images/ayurvedalogo.png')] bg-no-repeat bg-contain cursor-pointer" 
                 onClick={() => router.push('/')}
               ></div>
             </div>
-            <div className="w-[110px] h-[58px]">
+            <div className="w-[70px] h-[42px]">
               <div className="w-full h-full bg-[url('/images/NABH-Logo.png')] bg-no-repeat bg-contain bg-center"></div>
             </div>
           </div>

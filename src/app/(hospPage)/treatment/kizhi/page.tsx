@@ -190,7 +190,7 @@ import React from 'react'
       <div className="testimonial-content" >
         <div className="testimonial-rating" ></div>
         <p>
-         During the treatment, I felt a sense of deep relaxation wash over me as the poultices were applied to specific points on my body. The therapists' gentle touch and expert manipulation of the poultices seemed to melt away my muscular tension and joint stiffness, leaving me feeling rejuvenated and refreshed.
+         During the treatment, I felt a sense of deep relaxation wash over me as the poultices were applied to specific points on my body. The therapists&apos; gentle touch and expert manipulation of the poultices seemed to melt away my muscular tension and joint stiffness, leaving me feeling rejuvenated and refreshed.
         </p>
         <footer>— Shivam Sharma</footer>
        </div>

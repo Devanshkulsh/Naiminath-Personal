@@ -49,7 +49,7 @@ const ApplyHome = () => {
           ))}
           <div className="count">
             <div className="count-num">{visitCount} +</div>
-            <div className="count-val">Total Website Visit's</div>
+            <div className="count-val">Total Website Visit&apos;s</div>
           </div>
         </div>
       </div>

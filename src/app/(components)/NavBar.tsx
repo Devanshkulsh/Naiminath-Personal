@@ -10,10 +10,10 @@ const NavBar = () => {
   const router = useRouter();
   let pathname = usePathname();
   return (
-    <header className="my-0 mx-5">
+    <header className="my-0 mx-5 lg:mx-0 xl:mx-3 2xl:mx-5">
       <nav>
-        <ul className="flex flex-row flex-wrap justify-center items-center gap-x-6 gap-y-2
-        text-[#252525] text-[15px] font-bold">
+        <ul className="flex flex-row flex-wrap lg:flex-nowrap justify-center items-center gap-x-6 lg:gap-x-2 xl:gap-x-3 2xl:gap-x-6 gap-y-2
+        text-[#252525] text-[15px] lg:text-[13px] xl:text-[14px] 2xl:text-[15px] font-bold">
           <li>
             <Link
               href="/"

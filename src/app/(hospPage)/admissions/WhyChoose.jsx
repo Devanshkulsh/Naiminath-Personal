@@ -36,7 +36,7 @@ const WhyChoose = () => {
           </p>
           <div className="why-cards">
             {cardData.map((card, index) => (
-              <div className="why-card">
+              <div className="why-card" key={index}>
                 <div className="card-img">{card.img}</div>
                 <div className="card-heading">{card.heading}</div>
                 <div className="card-desc">{card.desc}</div>

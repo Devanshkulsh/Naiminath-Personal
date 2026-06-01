@@ -43,22 +43,21 @@ export async function GET(req: NextRequest) {
           });
       } catch (error) {
         console.error('Error:', error);
-        return NextResponse.json({ error: "Internal Server Error" }, { status: 500 });
+        NextResponse.json({ error: "Internal Server Error" });
       }
 }
 
 async function authorize(){
-    const keyFile = process.env.GOOGLE_SERVICE_ACCOUNT 
-        ? JSON.parse(process.env.GOOGLE_SERVICE_ACCOUNT)
-        : JSON.parse(fs.readFileSync(API_KEY, 'utf8'));
-    const jwtClient = new google.auth.JWT(
-        keyFile.client_email,
-        undefined,
-        keyFile.private_key,
+    const jwtClient =  new google.auth.JWT(
+        apiKey.client_email,
+        API_KEY, // Scopes are not required for API key
+        apiKey.private_key,
         SCOPES
-    );
-    await jwtClient.authorize();
-    return jwtClient;
+      );
+    
+      await jwtClient.authorize();
+    
+      return jwtClient;
 }
 
 async function getFiles(authClient:any) {
