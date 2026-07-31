@@ -15,6 +15,14 @@ import Whatsapp from "./(components)/Whatsapp";
 
 config.autoAddCss = false;
 const inter = Inter({ subsets: ["latin"] });
+const formScriptAttributes = {
+  path: '["/", "/dynamicForm/index.html","/apply-now"]',
+  divid: "formsID7375",
+  courses: '["Select Course","BAMS"]',
+  styles: "basic",
+  logo: "/images/logo.png",
+  contact: "+91-8193896320",
+} as Record<string, string>;
 
 interface MetadataWithMeta extends Metadata {
   meta?: {
@@ -58,13 +66,8 @@ export default function RootLayout({
         <Script
           type="module"
           src="https://ntechzy.in/api/v1/student-form/form.js"
-          path='["/", "/dynamicForm/index.html","/apply-now"]'
-          divid="formsID7375"
-          courses='["Select Course","BAMS"]'
-          styles="basic"
-          logo="/images/logo.png"
-          contact="+91-8193896320"
-        ></Script>
+          {...formScriptAttributes}
+        />
       </body>
     </html>
   );
