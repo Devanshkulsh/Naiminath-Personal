@@ -11,15 +11,15 @@ import apiKey from '../../../../../apikey.json'
 //  const SCOPES = [process.env.SCOPES||''];
 //  const folderId:string = process.env.FOLDER_ID||'';
 //const folderId="146Am-MP_RV0TbS44jjSWTsPYZImzk6hq"
-const folderId="1bsYtbg3QnOS0kUoQPPPGcmO_mV4YIKgX"
-const SCOPES=["https://www.googleapis.com/auth/drive"]
+const folderId = "1bsYtbg3QnOS0kUoQPPPGcmO_mV4YIKgX"
+const SCOPES = ["https://www.googleapis.com/auth/drive"]
 
-const API_KEY = path.join(process.cwd(),  "apikey.json");
+const API_KEY = path.join(process.cwd(), "apikey.json");
 
 
 //const apiUrl = `https://www.googleapis.com/drive/v3/files?q=${folderId}+in+parents&key=${apiKey}`;
 
- console.log("API_KEY==", API_KEY);
+console.log("API_KEY==", API_KEY);
 
 if (!fs.existsSync(API_KEY)) {
   console.error(`Error: 'credentials.json' not found at ${API_KEY}`);
@@ -31,50 +31,53 @@ const getStringBeforeLastDot = (inputString: string): string | null =>
 
 export const revalidate = 0
 export async function GET(req: NextRequest) {
-    try {
-        // Authorize and get the authClient
-        const authClient = await authorize();
-    
-        // List files in the specified folder
-        const filesInFolder = await getFiles(authClient);    
-        return NextResponse.json({
-            files:filesInFolder,
-            status: 200,
-          });
-      } catch (error) {
-        console.error('Error:', error);
-        NextResponse.json({ error: "Internal Server Error" });
-      }
+  try {
+    // Authorize and get the authClient
+    const authClient = await authorize();
+
+    // List files in the specified folder
+    const filesInFolder = await getFiles(authClient);
+    return NextResponse.json({
+      files: filesInFolder,
+      status: 200,
+    });
+  } catch (error) {
+    console.error('Error:', error);
+    return NextResponse.json({ error: "Internal Server Error" }, { status: 500 });
+  }
 }
 
-async function authorize(){
-    const jwtClient =  new google.auth.JWT(
-        apiKey.client_email,
-        API_KEY, // Scopes are not required for API key
-        apiKey.private_key,
-        SCOPES
-      );
-    
-      await jwtClient.authorize();
-    
-      return jwtClient;
+async function authorize() {
+  const keyFile = process.env.GOOGLE_SERVICE_ACCOUNT
+    ? JSON.parse(process.env.GOOGLE_SERVICE_ACCOUNT)
+    : JSON.parse(fs.readFileSync(API_KEY, 'utf8'));
+  const jwtClient = new google.auth.JWT(
+    keyFile.client_email,
+    undefined,
+    keyFile.private_key,
+    SCOPES
+  );
+  await jwtClient.authorize();
+  return jwtClient;
+
+
 }
 
-async function getFiles(authClient:any) {
-    const drive = google.drive({ version: 'v3', auth: authClient });
+async function getFiles(authClient: any) {
+  const drive = google.drive({ version: 'v3', auth: authClient });
 
-    try {
-      // List files in the specified folder
-      const res = await drive.files.list({
-        q:`'${encodeURIComponent(folderId)}' in parents`,
-       // spaces: 'drive'
-      });
-  
-      return res.data.files;
-    } catch (error: any) {
-      console.error('Error fetching files:', error.message);
-      throw error;
-    }
+  try {
+    // List files in the specified folder
+    const res = await drive.files.list({
+      q: `'${encodeURIComponent(folderId)}' in parents`,
+      // spaces: 'drive'
+    });
+
+    return res.data.files;
+  } catch (error: any) {
+    console.error('Error fetching files:', error.message);
+    throw error;
+  }
 }
 
 // async function loadSavedCredentialsIfExist() {

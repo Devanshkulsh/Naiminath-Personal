@@ -214,7 +214,7 @@ const MukhaLepam = () => {
         <div className="testimonial-content">
           <div className="testimonial-rating"></div>
           <p>
-           At Naiminath Ayurveda, Mukha Lepam is more than just a cosmetic procedure; it's a holistic approach to skincare and well-being. The therapy not only nourishes the skin externally but also aims to restore energetic balance, promoting inner well-being and radiance. By stimulating marma points (energy centers) on the face, Mukha Lepam helps in promoting overall energy flow and well-being.
+           At Naiminath Ayurveda, Mukha Lepam is more than just a cosmetic procedure; it&apos;s a holistic approach to skincare and well-being. The therapy not only nourishes the skin externally but also aims to restore energetic balance, promoting inner well-being and radiance. By stimulating marma points (energy centers) on the face, Mukha Lepam helps in promoting overall energy flow and well-being.
           </p>
           <footer>— Sajid</footer>
         </div>

@@ -14,7 +14,7 @@ const Youtube = () => {
       <div className="yt-sec-wrapper">
         <div className="yt-sec-left">
           <h3 className="yt-head">
-            We're Naiminath <br /> <strong>& We're Different</strong>
+            We&apos;re Naiminath <br /> <strong>& We&apos;re Different</strong>
           </h3>
           <p className="yt-p">
             WE ARE MAKING LEARNING MORE RELEVANT AND TRANSFORMATIONAL.

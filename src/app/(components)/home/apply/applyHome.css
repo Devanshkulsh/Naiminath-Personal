@@ -71,6 +71,70 @@
     font-weight: 600;
 }
 
+.apply-modal-overlay {
+    position: fixed;
+    inset: 0;
+    z-index: 999;
+    display: none;
+    align-items: center;
+    justify-content: center;
+    padding: 24px;
+    background: rgba(0, 0, 0, 0.65);
+}
+
+.apply-modal-overlay.is-open {
+    display: flex;
+}
+
+.apply-modal {
+    width: min(94vw, 760px);
+    max-height: 90vh;
+    overflow: auto;
+    background: #fff;
+    border-radius: 8px;
+    box-shadow: 0 24px 70px rgba(0, 0, 0, 0.28);
+}
+
+.apply-modal-header {
+    position: sticky;
+    top: 0;
+    z-index: 1;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 16px;
+    padding: 18px 22px;
+    border-bottom: 1px solid #e9e9e9;
+    background: #fff;
+}
+
+.apply-modal-header h3 {
+    margin: 0;
+    color: var(--red);
+    font-size: 1.35rem;
+    font-weight: 700;
+}
+
+.apply-modal-close {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    width: 38px;
+    height: 38px;
+    flex: 0 0 38px;
+    border: 0;
+    border-radius: 50%;
+    background: #111;
+    color: #fff;
+    font-size: 1.6rem;
+    cursor: pointer;
+}
+
+.apply-form-container {
+    min-height: 520px;
+    padding: 20px;
+}
+
 @media only screen and (max-width: 600px) {
     .applyHome {
         /* height: 100vh; */
@@ -108,5 +172,27 @@
 
     .count-num {
         font-size: 3rem;
+    }
+
+    .apply-modal-overlay {
+        padding: 12px;
+    }
+
+    .apply-modal {
+        width: 100%;
+        max-height: 92vh;
+    }
+
+    .apply-modal-header {
+        padding: 14px 16px;
+    }
+
+    .apply-modal-header h3 {
+        font-size: 1.1rem;
+    }
+
+    .apply-form-container {
+        min-height: 560px;
+        padding: 12px;
     }
 }
